@@ -37,8 +37,6 @@ export default function Search({searchedCharacterName, member}) {
         .catch((err) => console.error("error:" + err));
     }
   }, [ocid])
-  console.log(memberInfo);
-
   return (
     <>
     <section className="w-full flex flex-col items-center justify-center p-2">
