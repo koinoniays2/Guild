@@ -84,7 +84,7 @@ export default function Guild() {
       <section className="w-full flex justify-center">
         <div className="w-full max-w-7xl flex justify-center items-center flex-wrap">
           {
-            member.sort().map((item, index) => (
+            member.map((item, index) => (
               <p key={index} className="p-5">{item}</p>
             ))
           }
