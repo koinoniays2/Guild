@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "../assets/고래.png"
-import { Link } from "react-router-dom";
 
 export default function Header() {
   const imageClick = () => {

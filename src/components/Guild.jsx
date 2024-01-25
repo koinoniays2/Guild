@@ -54,7 +54,7 @@ export default function Guild() {
           {/* 기준 날짜 길드마크, 길드명 */}
           <div className="flex flex-col items-center justify-center">
             {/* 기준 날짜 */}
-            <p className="text-sm text-gray-400">{lists.date ? String(lists.date).slice(0, 10) : lists.date}</p>
+            {/* <p className="text-sm text-gray-400">{lists.date ? String(lists.date).slice(0, 10) : lists.date}</p> */}
             {/* 길드마크, 길드명 */}
             <div className="flex items-center">
               {lists.guild_mark_custom ? <img className="object-contain"
