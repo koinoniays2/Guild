@@ -1,4 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* { margin: 0; padding: 0; font-family: "Noto Sans KR", sans-serif; }
+
+@font-face {
+    font-family: 'NanumSquare';
+    src: url('fonts/NanumSquareR.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'TheJamsil';
+    src: url('fonts/TheJamsilR.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Sejong';
+    src: url('fonts/SejongLight.ttf') format('truetype');
+}
+* { margin: 0; padding: 0; font-family: "Sejong", "TheJamsil", "NanumSquare", "Noto Sans KR", sans-serif; }

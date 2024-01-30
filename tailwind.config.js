@@ -7,9 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "back-color" : "#353535",
-        "font-black" : "#353535",
-        "font-white" : "#F6F6F6"
+        "black-color" : "#353535",
+        "white-color" : "#F6F6F6"
       },
     },
   },

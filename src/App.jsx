@@ -1,12 +1,11 @@
-import Guild from "./components/Guild";
 import Header from "./components/Header";
+import Dolphin from "./assets/dolphin.png";
 
 export default function App() {
   
   return (
     <>
-      <Header />
-      <Guild />
+      <Header bgColor="bg-black-color" rightImg={Dolphin} />
     </>
   );
 }
