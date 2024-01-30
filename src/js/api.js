@@ -13,6 +13,10 @@ export async function apiGuild() {
 // 마스터 ocid
 export async function apiMaster({queryKey}) {
     const master = encodeURIComponent(queryKey[1]?.master);
+    if (!master) {
+        // master가 없을 경우 오류 처리 또는 기본값 설정
+        throw new Error("master is undefined");
+    }
     return await fetch(`https://open.api.nexon.com/maplestory/v1/id?character_name=${master}`, {
         method: "GET",
         headers:{
@@ -23,6 +27,10 @@ export async function apiMaster({queryKey}) {
 // 마스터 캐릭 정보
 export async function apiMasterCharacter({queryKey}) {
     const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        // ocid가 없을 경우 오류 처리 또는 기본값 설정
+        throw new Error("ocid is undefined");
+    }
     return await fetch(`https://open.api.nexon.com/maplestory/v1/character/basic?ocid=${ocid}&date=${getCurrentDate()}`, {
         method: "GET",
         headers:{
