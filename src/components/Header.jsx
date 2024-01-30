@@ -30,17 +30,23 @@ export default function Header({bgColor, rightImg}) {
   return (
     <>
     {/* 백그라운드 컬러 프롭스 사용 */}
-    <header className={`relative flex justify-between w-full h-[400px] overflow-hidden ${bgColor}`}>
+    <header className={`relative flex justify-end w-full h-[480px] overflow-hidden ${bgColor}`}>
       {/* 길드 정보 */}
-      <div className="w-[50%] min-w-48 h-full flex flex-col justify-center items-center text-white-color space-y-4">
-        {/* 길드 마크, 길드 명, 길드 레벨, 서버 네임 */}
+      <div className="z-10 absolute left-[10%] translate-x-[-10%] top-[50%] translate-y-[-50%]
+      flex flex-col text-white-color space-y-4">
+        {/* 서버 네임, 길드 마크, 길드 명, 길드 레벨 */}
+        <div className="w-12 h-7 rounded-xl bg-black">
+            <p className={`text-center ${dataGuild?.world_name === "루나" && "text-yellow-500"} leading-7`}>{dataGuild?.world_name}</p>
+        </div>
         <div className="flex space-x-2 items-end">
+          {
+          dataGuild?.guild_mark_custom ?  
           <img className="object-contain self-center" src={`data:image/jpeg;base64,${dataGuild?.guild_mark_custom}`} alt="guildmark"/>
+          : ""
+          }
           <h2 className="text-2xl md:text-4xl font-semibold">{dataGuild?.guild_name}</h2>
           <p className="text-sm text-gray-400">Lv.{dataGuild?.guild_level}</p>
-          <div className="w-12 h-7 rounded-xl bg-black">
-            <p className={`text-center ${dataGuild?.world_name === "루나" && "text-yellow-500"} leading-7`}>{dataGuild?.world_name}</p>
-          </div>
+          
         </div>
         {/* 길마 네임, 레벨 */}
         <div className="flex items-end">
@@ -49,10 +55,12 @@ export default function Header({bgColor, rightImg}) {
           <p className="text-sm text-gray-400">&nbsp;Lv.{dataMasterCharacter?.character_level}</p>
         </div>
         {/* 길마 캐릭 이미지 */}
-        <img className="object-contain border rounded-lg" src={dataMasterCharacter?.character_image} alt="master character"/>
+        <div>
+          <img className="object-contain border rounded-lg" src={dataMasterCharacter?.character_image} alt="master character"/>
+        </div>
       </div>
       {/* 오른쪽 이미지 프롭스 사용 */}
-      <div className="w-[50%] min-w-48 h-full" style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)"}}>
+      <div className="w-[60%] h-full" style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 20% 100%)"}}>
         <img className="w-full h-full object-cover object-bottom" src={rightImg} alt="dolphin" />
         <div className="w-full h-full absolute top-0 right-0 bg-black/50"></div>
       </div>
