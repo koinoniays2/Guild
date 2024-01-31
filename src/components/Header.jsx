@@ -1,7 +1,8 @@
-import React from "react";
-import { apiMaster, apiGuild, apiMasterCharacter } from "../js/api";
+import React, { useState } from "react";
+import { apiGuild, apiCharacter, apiOcid } from "../js/api";
 import { useQuery } from "react-query";
 import MemberSearch from "./MemberSearch";
+import { FaSearch } from "react-icons/fa";
 
 export default function Header({bgColor, backgroundImg}) {
   // 길드 정보 불러오기
@@ -20,7 +21,7 @@ export default function Header({bgColor, backgroundImg}) {
   
   // 길드 마스터 ocid 얻기
   const { data:dataMaster, isLoading:isLoadingMaster } = 
-  useQuery(["getMaster", { name: dataGuild?.guild_master_name }], apiMaster, {
+  useQuery(["getMaster", { name: dataGuild?.guild_master_name }], apiOcid, {
     staleTime: 24 * 60 * 60 * 1000,
     enabled: !!dataGuild?.guild_master_name // dataGuild?.guild_master_name가 있을때만 실행
   });
@@ -31,10 +32,29 @@ export default function Header({bgColor, backgroundImg}) {
 
   // 길드 마스터 캐릭 정보
   const { data:dataMasterCharacter, isLoading:isLoadingMasterCharacter } = 
-  useQuery(["getMasterCharacter", ocidMaster && { ocid : ocidMaster }], apiMasterCharacter, {
+  useQuery(["getMasterCharacter", ocidMaster && { ocid : ocidMaster }], apiCharacter, {
     staleTime: 24 * 60 * 60 * 1000,
     enabled: !!ocidMaster // ocidMaster가 있을때만 실행
   });
+
+  // 인풋 값 담기
+  const [characterName, setCharacterName] = useState("");
+    const inputChange = (e) => {
+        setCharacterName(e.target.value);
+  };
+  // 넘기기 위한 인풋 값 담기
+  const [searchName, setSearchName] = useState("");
+  const onClick = () => {
+    setSearchName(characterName);
+    setCharacterName("");
+  }
+  const onEnter = (e) => {
+    if (e.key === "Enter") {
+      setSearchName(characterName);
+      setCharacterName("");
+    }
+  }
+  
   return (
     <>
     {/* 백그라운드 컬러 (프롭스) */}
@@ -42,7 +62,7 @@ export default function Header({bgColor, backgroundImg}) {
       {/* 전체 너비 지정, 중간 정렬 */}
       <div className="z-10 absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] max-w-[1024px] w-[90%]">
         {/* 길드 정보 배경 블러 */}        
-        <div className="flex flex-col space-y-4 w-fit p-4 rounded-2xl bg-white/10 text-white-color"
+        <div className="flex flex-col w-fit p-4 space-y-4 rounded-2xl bg-white/10 text-white-color"
         style={{backdropFilter: "blur(5px)"}}>
           {/* 서버 네임 */}
           <div className="w-12 h-7 rounded-xl bg-black">
@@ -68,8 +88,12 @@ export default function Header({bgColor, backgroundImg}) {
               <p className="text-sm text-gray-400">Lv.{dataMasterCharacter?.character_level}</p>
             </div>
           </div>
-          {/* 길드 내 길드원 검색 컴포넌트 (프롭스) */}
-          <MemberSearch guildName={dataGuild?.guild_name} />
+          {/* 길드 내 길드원 검색 */}
+          <div className="relative text-black-color">
+            <input className="p-1 px-3 outline-none rounded-md" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
+            onChange={inputChange} onKeyDown={onEnter} value={characterName} />
+            <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer" onClick={onClick} />
+          </div>
         </div>
       </div>
       {/* 백그라운드 이미지 (프롭스) */}
@@ -80,6 +104,7 @@ export default function Header({bgColor, backgroundImg}) {
       </div>
       }
     </header>
+    <MemberSearch searchName={searchName} guildMember={guildMember} />
     </>
   );
 }
