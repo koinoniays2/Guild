@@ -34,9 +34,11 @@ export default function MemberSearch({searchName, guildMember}) {
     }
     // console.log(guildMemberCharacterStat);
 
+    // , 정규식
     function formatStatValue(value) {
         return value?.stat_value ? value?.stat_value.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "-";
     }
+    // CSS
     const FLEX = `w-full flex justify-center items-center`;
     const FLEX_COL = `w-full flex flex-col justify-center items-center`;
     const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
