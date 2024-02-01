@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import MemberSearch from "./MemberSearch";
 import { FaSearch } from "react-icons/fa";
 
-export default function Header({bgColor, backgroundImg}) {
+export default function Header({bgColor, backImg}) {
   // 길드 정보 불러오기
   const { data:dataGuild, isLoading:isLoadingGuild } = useQuery(["getGuild"], apiGuild, {
     staleTime: 24 * 60 * 60 * 1000
@@ -50,17 +50,22 @@ export default function Header({bgColor, backgroundImg}) {
   }
   const onEnter = (e) => {
     if (e.key === "Enter") {
-      setSearchName(characterName);
-      setCharacterName("");
+      onClick();
     }
   }
   
   return (
     <>
-    {/* 백그라운드 컬러 (프롭스) */}
-    <header className={`relative w-full h-[480px] overflow-hidden ${bgColor}`}>
+    {/* 헤더 컬러(props) */}
+    <header className={`relative w-full h-[480px] flex justify-center items-center overflow-hidden ${bgColor}`}>
+      {/* 백그라운드 이미지(props) */}
+      { backImg && 
+      <>
+      <div className="absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-top" style={{backgroundImage:`url(${backImg})`}}></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
+      </>}
       {/* 전체 너비 지정, 중간 정렬 */}
-      <div className="z-10 absolute left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] max-w-[1024px] w-[90%]">
+      <div className="z-10 w-[90%] max-w-5xl">
         {/* 길드 정보 배경 블러 */}        
         <div className="flex flex-col w-fit p-4 space-y-4 rounded-2xl bg-white/10 text-white-color"
         style={{backdropFilter: "blur(5px)"}}>
@@ -90,19 +95,12 @@ export default function Header({bgColor, backgroundImg}) {
           </div>
           {/* 길드 내 길드원 검색 */}
           <div className="relative text-black-color">
-            <input className="p-1 px-3 outline-none rounded-md" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
+            <input className="px-2 py-1 w-full outline-none rounded-md block" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
             onChange={inputChange} onKeyDown={onEnter} value={characterName} />
             <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer" onClick={onClick} />
           </div>
         </div>
       </div>
-      {/* 백그라운드 이미지 (프롭스) */}
-      { backgroundImg &&
-      <div className="relative w-full h-full">
-        <img className="w-full h-full object-cover object-top" src={backgroundImg} alt="background img" />
-        <div className="absolute w-full h-full top-0 left-0 bg-black/60"></div>
-      </div>
-      }
     </header>
     <MemberSearch searchName={searchName} guildMember={guildMember} />
     </>
