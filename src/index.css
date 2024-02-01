@@ -14,4 +14,4 @@
     font-family: 'Sejong';
     src: url('fonts/SejongLight.ttf') format('truetype');
 }
-* { margin: 0; padding: 0; font-family: "Sejong", "NanumSquare", "TheJamsil", "Noto Sans KR", sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Sejong", "NanumSquare", "TheJamsil", "Noto Sans KR", sans-serif; }
