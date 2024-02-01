@@ -94,7 +94,7 @@ export default function Header({bgColor, backImg}) {
             </div>
           </div>
           {/* 길드 내 길드원 검색 */}
-          <div className="relative text-black-color">
+          <div className="relative w-fit text-black-color">
             <input className="px-2 py-1 outline-none rounded-md block" size="18" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
             onChange={inputChange} onKeyDown={onEnter} value={characterName} />
             <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-blue-400" onClick={onClick} />
