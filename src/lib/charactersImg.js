@@ -27,7 +27,7 @@ export const charactersImg = [
     { name: "팔라딘", imgSrc: "assets/모험가-전사-팔라딘.jpg" },
     { name: "히어로", imgSrc: "assets/모험가-전사-히어로.jpg" },
     { name: "바이퍼", imgSrc: "assets/모험가-해적-바이퍼.jpg" },
-    { name: "캐논슈터", imgSrc: "assets/모험가-해적-캐슈.jpg" },
+    { name: "캐논마스터", imgSrc: "assets/모험가-해적-캐슈.jpg" },
     { name: "캡틴", imgSrc: "assets/모험가-해적-캡틴.jpg" },
     { name: "윈드브레이커", imgSrc: "assets/시그너스-궁수-윈브.jpg" },
     { name: "나이트워커", imgSrc: "assets/시그너스-도적-나워.jpg" },
