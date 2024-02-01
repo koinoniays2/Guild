@@ -64,7 +64,7 @@ export default function MemberSearch({searchName, guildMember}) {
                         {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
                         <div className={`${FLEX_COL}`}>
                             <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
-                            <img className="bg-white/10 rounded-2xl" style={{backdropFilter: "blur(2px)"}} src={dataGuildMemberCharacter?.character_image} alt="character img" />
+                            <img className="" src={dataGuildMemberCharacter?.character_image} alt="character img" />
                             <div className="flex justify-center items-end space-x-2">
                                 <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
                                 <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
