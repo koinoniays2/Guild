@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { apiCharacter, apiCharacterStat, apiOcid } from "../js/api";
+import { charactersImg } from "../lib/charactersImg";
 
 export default function MemberSearch({searchName, guildMember}) {
     // 길드원 ocid 얻기
@@ -44,22 +45,33 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
 
     return (
-        <section className="relative w-full flex flex-col justify-center items-center text-black-color py-14">
+        <section className="relative w-full flex flex-col justify-start items-center text-black-color py-14 overflow-hidden">
+            {/* 캐릭 배경 */}
+            {   guildMember?.includes(searchName) &&
+                charactersImg.map((item, index) => (
+                item.name === dataGuildMemberCharacter?.character_class &&
+                <>
+                <div key={index} className="absolute top-0 -right-24 w-full h-full rotate-12 bg-contain bg-right-top bg-no-repeat opacity-30 -z-20
+                md:w-[700px] md:h-[600px] md:-right-40" style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
+                {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent -z-10"></div> */}
+                </>
+                ))
+            }
             <div className="w-[90%] max-w-5xl flex flex-col items-center space-y-2">
                 {   
                     guildMember?.includes(searchName) ?
                     <>
                         {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
-                        <div className={FLEX_COL}>
+                        <div className={`${FLEX_COL}`}>
                             <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
-                            <img src={dataGuildMemberCharacter?.character_image} alt="character img" />
+                            <img className="bg-white/10 rounded-2xl" style={{backdropFilter: "blur(2px)"}} src={dataGuildMemberCharacter?.character_image} alt="character img" />
                             <div className="flex justify-center items-end space-x-2">
                                 <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
                                 <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
                             </div>
                         </div>
                         {/* 스텟 정보 */}
-                        <div className={`${FLEX_COL} max-w-[360px] border border-[#5CB85C]`}>
+                        <div className={`${FLEX_COL} max-w-[360px] border border-[#5CB85C] bg-white/10`} style={{backdropFilter: "blur(2px)"}}>
                             {/* 스공 */}
                             {guildMemberCharacterStat && (
                             <div className={`${FLEX} border-b`}>
