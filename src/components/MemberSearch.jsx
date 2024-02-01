@@ -45,18 +45,19 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
 
     return (
-        <section className="relative w-full flex flex-col justify-start items-center text-black-color py-14 overflow-hidden">
+        // 임의 높이 나중에 지우기
+        <section className="relative w-full h-[1000px] flex flex-col justify-start items-center text-black-color py-14 overflow-hidden">
             {/* 캐릭 배경 */}
             {   guildMember?.includes(searchName) &&
                 charactersImg.map((item, index) => (
                 item.name === dataGuildMemberCharacter?.character_class &&
-                <>
-                <div key={index} className="absolute top-0 -right-24 w-full h-full rotate-12 bg-contain bg-right-top bg-no-repeat opacity-30 -z-20
-                md:w-[700px] md:h-[600px] md:-right-40" style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
-                {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent -z-10"></div> */}
-                </>
+                <div key={index} className="absolute top-4 -right-28 w-full h-[400px] bg-contain bg-right-top bg-no-repeat opacity-30 -z-20
+                md:h-[600px] md:-right-48 xl:h-[700px]" 
+                style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
                 ))
             }
+            {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent -z-10"></div> */}
+            {/* 캐릭 정보 */}
             <div className="w-[90%] max-w-5xl flex flex-col items-center space-y-2">
                 {   
                     guildMember?.includes(searchName) ?
@@ -74,7 +75,7 @@ export default function MemberSearch({searchName, guildMember}) {
                         <div className={`${FLEX_COL} max-w-[360px] border border-[#5CB85C] bg-white/10`} style={{backdropFilter: "blur(2px)"}}>
                             {/* 스공 */}
                             {guildMemberCharacterStat && (
-                            <div className={`${FLEX} border-b`}>
+                            <div className={`${FLEX} border-b border-gray-400`}>
                                 <p className="font-bold text-gray-400 text-sm px-2">스공</p>
                                 <p>{`${formatStatValue(guildMemberCharacterStat[0])} 
                                 ~ ${formatStatValue(guildMemberCharacterStat[1])}`}</p>

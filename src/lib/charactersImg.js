@@ -4,7 +4,7 @@ export const charactersImg = [
     { name: "카이저", imgSrc: "assets/노바-전사-카이저.jpg" },
     { name: "엔젤릭버스터", imgSrc: "assets/노바-해적-엔버.jpg" },
     { name: "와일드헌터", imgSrc: "assets/레지-궁수-와헌.jpg" },
-    { name: "베틀매이지", imgSrc: "assets/레지-마법사-베매.jpg" },
+    { name: "배틀메이지", imgSrc: "assets/레지-마법사-배메.jpg" },
     { name: "데몬어벤져", imgSrc: "assets/레지-전사-데벤져.jpg" },
     { name: "데몬슬레이어", imgSrc: "assets/레지-전사-데슬.jpg" },
     { name: "블래스터", imgSrc: "assets/레지-전사-블래스터.jpg" },

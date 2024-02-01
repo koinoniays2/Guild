@@ -1,10 +1,10 @@
-import Header from "./components/Header";
+import SearchBanner from "./components/SearchBanner";
 
 export default function App() {
   
   return (
     <>
-      <Header bgColor="bg-black-color" backImg="aquaroad.png" />
+      <SearchBanner bgColor="bg-black-color" backImg="aquaroad.png" />
     </>
   );
 }
