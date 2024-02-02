@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         "black-color" : "#353535",
-        "white-color" : "#F6F6F6"
+        "white-color" : "#F6F6F6",
+        "main-color" : "#172650"
       },
     },
   },

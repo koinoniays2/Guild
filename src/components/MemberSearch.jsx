@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 import { apiCharacter, apiCharacterStat, apiOcid } from "../js/api";
 import { charactersImg } from "../lib/charactersImg";
+import { motion } from "framer-motion";
+import { FadeLoader } from "react-spinners";
 
 export default function MemberSearch({searchName, guildMember}) {
     // 길드원 ocid 얻기
@@ -45,28 +47,39 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
 
     return (
-        // 임의 높이 나중에 지우기
-        <section className="relative w-full h-[1000px] flex flex-col justify-start items-center text-black-color py-14 overflow-hidden">
-            {/* 캐릭 배경 */}
+        <section className="relative w-full -translate-y-16 flex flex-col justify-start items-center text-black-color overflow-hidden">
+            {/* 로딩 화면 */}
+            { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
+            <div className="w-full flex items-start justify-center"><FadeLoader color="gray" /></div>
+            :(
+            <>
+            {/* 캐릭 정보 */}
+            { searchName &&
+            // 임의 높이 지정 나중에 지우기
+            <motion.div 
+            key={searchName}
+            initial={{opacity: 0, y: 15}}
+            animate={{opacity: 1, y: 0}}
+            exit={{opacity: 0, y: 15}}
+            transition={{duration: 0.3, ease:"easeOut"}}
+            className="w-[calc(100%-40px)] h-[700px] max-w-5xl flex flex-col items-center py-16 space-y-2 z-50 bg-white rounded-t-2xl">
+                {/* 캐릭 배경 */}
             {   guildMember?.includes(searchName) &&
                 charactersImg.map((item, index) => (
                 item.name === dataGuildMemberCharacter?.character_class &&
-                <div key={index} className="absolute top-4 -right-28 w-full h-[400px] bg-contain bg-right-top bg-no-repeat opacity-30 -z-20
-                md:h-[600px] md:-right-48 xl:h-[700px]" 
+                <div key={index} className="absolute top-16 -right-28 w-full h-[400px] bg-contain bg-right-top bg-no-repeat opacity-20 -z-10
+                md:h-[600px] md:-right-48" 
                 style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
                 ))
             }
-            {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent -z-10"></div> */}
-            {/* 캐릭 정보 */}
-            <div className="w-[90%] max-w-5xl flex flex-col items-center space-y-2">
                 {   
                     guildMember?.includes(searchName) ?
                     <>
                         {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
-                        <div className={`${FLEX_COL}`}>
+                        <div className={FLEX_COL}>
                             <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
-                            <img className="" src={dataGuildMemberCharacter?.character_image} alt="character img" />
-                            <div className="flex justify-center items-end space-x-2">
+                            <img className="" src={dataGuildMemberCharacter?.character_image} alt="character_img" />
+                            <div className="flex justify-center items-center space-x-1">
                                 <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
                                 <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
                             </div>
@@ -113,7 +126,10 @@ export default function MemberSearch({searchName, guildMember}) {
                     :
                     searchName === "" ? "" : <p>길드원이 아닙니다.</p>
                 }
-            </div>
+            </motion.div>
+            }
+            </>
+            )}
         </section>
     )
 }
