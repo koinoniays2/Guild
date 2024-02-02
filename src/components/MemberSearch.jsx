@@ -47,7 +47,7 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
 
     return (
-        <section className="relative w-full -translate-y-16 flex flex-col justify-start items-center text-black-color overflow-hidden">
+        <section className="w-full -translate-y-16 flex flex-col justify-start items-center text-black-color overflow-hidden">
             {/* 로딩 화면 */}
             { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
             <div className="w-full flex items-start justify-center"><FadeLoader color="gray" /></div>
@@ -62,13 +62,13 @@ export default function MemberSearch({searchName, guildMember}) {
             animate={{opacity: 1, y: 0}}
             exit={{opacity: 0, y: 15}}
             transition={{duration: 0.3, ease:"easeOut"}}
-            className="w-[calc(100%-40px)] h-[700px] max-w-5xl flex flex-col items-center py-16 space-y-2 z-50 bg-white rounded-t-2xl">
+            className="relative w-[calc(100%-40px)] h-[700px] max-w-5xl flex flex-col items-center py-16 space-y-2 z-50 bg-white rounded-t-2xl">
                 {/* 캐릭 배경 */}
             {   guildMember?.includes(searchName) &&
                 charactersImg.map((item, index) => (
                 item.name === dataGuildMemberCharacter?.character_class &&
                 <div key={index} className="absolute top-16 -right-28 w-full h-[400px] bg-contain bg-right-top bg-no-repeat opacity-20 -z-10
-                md:h-[600px] md:-right-48" 
+                md:h-[600px] md:-right-48 lg:-right-56 xl:-right-72" 
                 style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
                 ))
             }
