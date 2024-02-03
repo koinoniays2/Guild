@@ -41,8 +41,20 @@ export default function MemberSearch({searchName, guildMember}) {
     function formatStatValue(value) {
         return value?.stat_value ? value?.stat_value.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "-";
     }
+    // 전투력
+    function formatNumber(number) {
+        const 억 = Math.floor(number / 100000000);
+        const 만 = Math.floor((number % 100000000) / 10000);
+        const 나머지 = number % 10000;
+        let result = '';
+        
+        억 > 0 && (result += 억 + '억');
+        만 > 0 && (result += 만 + '만');
+        나머지 > 0 && (result += 나머지);
+        return result;
+    }
     // CSS
-    const STAT_NAME = `w-9 font-bold text-center text-[#5CB85C] text-sm bg-gray-200`;
+    const STAT_NAME = `w-10 font-bold text-center text-[#5CB85C] text-sm bg-gray-200`;
     const STAT_LINE = `w-full flex justify-between items-center`
     const STAT_DESC = `w-16 font-bold text-center`
 
@@ -88,6 +100,13 @@ export default function MemberSearch({searchName, guildMember}) {
                         {/* 스텟 정보 */}
                         <div className="w-full flex flex-col justify-center items-end sm:items-center">
                             <div className="w-full max-w-80 flex-col space-y-1" >
+                                {/* 전투력 */}
+                                {guildMemberCharacterStat && (
+                                <div className={STAT_LINE}>
+                                    <p className={STAT_NAME}>전투력</p>
+                                    <p className="font-bold">{formatNumber(parseInt(guildMemberCharacterStat[42].stat_value))}</p>
+                                </div>
+                                )}
                                 {/* 스공 */}
                                 {guildMemberCharacterStat && (
                                 <div className={STAT_LINE}>
