@@ -139,7 +139,7 @@ export default function Header({bgColor, bgImg}) {
             <div className="w-full flex justify-center space-x-3">
             { 
               buttonNum.map((_, index) => (
-              <div key={index} className={`w-11 h-1 cursor-pointer bg-${index === btnNum ? "[#5CCBF9]" : "gray-500"}`} 
+              <div key={index} className={`w-11 h-2 cursor-pointer ${index === btnNum ? "bg-[#5CCBF9]" : "bg-gray-500"}`} 
               onClick={() => btnOnclick(index)}></div>
               ))
             }
