@@ -55,14 +55,13 @@ export default function MemberSearch({searchName, guildMember}) {
             <>
             {/* 캐릭 정보 */}
             { searchName &&
-            // 임의 높이 지정 나중에 지우기
             <motion.div 
             key={searchName}
             initial={{opacity: 0, y: 15}}
             animate={{opacity: 1, y: 0}}
             exit={{opacity: 0, y: 15}}
             transition={{duration: 0.3, ease:"easeOut"}}
-            className="relative w-[calc(100%-40px)] h-[700px] max-w-5xl flex flex-col items-center py-16 space-y-2 z-50 bg-white rounded-t-2xl">
+            className="relative w-[calc(100%-40px)] max-w-5xl flex flex-col items-center py-16 space-y-2 z-50 bg-white rounded-t-2xl">
                 {/* 캐릭 배경 */}
             {   guildMember?.includes(searchName) &&
                 charactersImg.map((item, index) => (
