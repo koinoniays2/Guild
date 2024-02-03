@@ -42,32 +42,32 @@ export default function MemberSearch({searchName, guildMember}) {
         return value?.stat_value ? value?.stat_value.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "-";
     }
     // CSS
-    const FLEX = `w-full flex justify-center items-center`;
-    const FLEX_COL = `w-full flex flex-col justify-center items-center`;
-    const STAT_NAME = `font-bold text-gray-400 text-sm px-2`;
+    const STAT_NAME = `w-9 font-bold text-center text-[#5CB85C] text-sm bg-gray-200`;
+    const STAT_LINE = `w-full flex justify-between items-center`
+    const STAT_DESC = `w-16 font-bold text-center`
 
     return (
         <section className="w-full -translate-y-16 flex flex-col justify-start items-center text-black-color overflow-hidden">
             {/* 로딩 화면 */}
             { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
-            <div className="w-full h-56 translate-y-16 flex items-center justify-center"><FadeLoader color="#5CCBF9" /></div>
+            <div className="w-full h-56 flex items-center justify-center"><FadeLoader color="#5CCBF9" /></div>
             :(
             <>
             {/* 캐릭 정보 */}
             { searchName &&
             <motion.div 
             key={searchName}
-            initial={{opacity: 0, y: 15}}
+            initial={{opacity: 0, y: 20}}
             animate={{opacity: 1, y: 0}}
-            exit={{opacity: 0, y: 15}}
+            exit={{opacity: 0, y: 20}}
             transition={{duration: 0.3, ease:"easeOut"}}
             className="relative w-[calc(100%-40px)] h-[448px] max-w-5xl flex flex-col items-center py-16 space-y-2 bg-white rounded-t-2xl z-10">
                 {/* 캐릭 배경 */}
             {   guildMember?.includes(searchName) &&
                 charactersImg.map((item, index) => (
                 item.name === dataGuildMemberCharacter?.character_class &&
-                <div key={index} className="absolute top-16 -right-[120px] w-full h-[300px] bg-contain bg-right-top bg-no-repeat opacity-20 -z-10
-                md:h-[400px]" 
+                <div key={index} className="absolute top-16 w-full h-[300px] bg-contain bg-right-top bg-no-repeat opacity-20 -z-10
+                md:h-[400px] md:-right-28" 
                 style={{backgroundImage: `url('${item.imgSrc}')`}}></div>
                 ))
             }
@@ -75,51 +75,55 @@ export default function MemberSearch({searchName, guildMember}) {
                     guildMember?.includes(searchName) ?
                     <>
                         {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
-                        <div className={FLEX_COL}>
-                            <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
-                            <img className="" src={dataGuildMemberCharacter?.character_image} alt="character_img" />
-                            <div className="flex justify-center items-center space-x-1">
+                        <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                            <div className="flex flex-col items-center">
+                                <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
+                                <img src={dataGuildMemberCharacter?.character_image} alt="character_img" />
+                            </div>
+                            <div className="flex justify-center items-center space-x-2">
                                 <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
                                 <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
                             </div>
                         </div>
                         {/* 스텟 정보 */}
-                        <div className={`${FLEX_COL} max-w-[360px] border border-[#5CB85C] bg-white/10`} style={{backdropFilter: "blur(2px)"}}>
-                            {/* 스공 */}
-                            {guildMemberCharacterStat && (
-                            <div className={`${FLEX} border-b border-gray-400`}>
-                                <p className="font-bold text-gray-400 text-sm px-2">스공</p>
-                                <p>{`${formatStatValue(guildMemberCharacterStat[0])} 
-                                ~ ${formatStatValue(guildMemberCharacterStat[1])}`}</p>
-                            </div>
-                            )}
-                            {/* 능력치 */}
-                            {guildMemberCharacterStat && (
-                            <div className={FLEX_COL}>
-                                <div className={FLEX}>
+                        <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                            <div className="w-full max-w-80 flex-col space-y-1" >
+                                {/* 스공 */}
+                                {guildMemberCharacterStat && (
+                                <div className={STAT_LINE}>
+                                    <p className={STAT_NAME}>스공</p>
+                                    <p className="font-bold">{`${formatStatValue(guildMemberCharacterStat[0])} 
+                                    ~ ${formatStatValue(guildMemberCharacterStat[1])}`}</p>
+                                </div>
+                                )}
+                                {/* 능력치 */}
+                                {guildMemberCharacterStat && (
+                                <>
+                                <div className={STAT_LINE}>
                                     {/* HP */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[20]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[20])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[20])}</p>
                                     {/* STR */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[16]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[16])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[16])}</p>
                                     {/* DEX */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[17]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[17])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[17])}</p>
                                 </div>
-                                <div className={FLEX}>
+                                <div className={STAT_LINE}>
                                     {/* MP */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[21]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[21])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[21])}</p>
                                     {/* INT */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[18]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[18])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[18])}</p>
                                     {/* LUK */}
                                     <p className={STAT_NAME}>{guildMemberCharacterStat[19]?.stat_name}</p>
-                                    <p>{formatStatValue(guildMemberCharacterStat[19])}</p>
+                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[19])}</p>
                                 </div>
+                                </>
+                                )}
                             </div>
-                            )}
                         </div>
                     </>
                     :

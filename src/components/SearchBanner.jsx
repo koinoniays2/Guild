@@ -70,7 +70,7 @@ export default function Header({bgColor, bgImg}) {
       <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
       </>}
       {/* 전체 너비 지정 */}
-      <div className="z-10 w-full p-base flex md:justify-center">
+      <div className="z-10 w-full p-base flex sm:justify-center">
         {/* 로딩 화면 */}
         {isLoadingGuild || isLoadingMaster || isLoadingMasterCharacter ?
         <div className="w-full flex items-center justify-center"><FadeLoader color="gray" /></div>
@@ -114,6 +114,7 @@ export default function Header({bgColor, bgImg}) {
         )}
       </div>
     </section>
+    {/* 검색 결과 */}
     <MemberSearch searchName={searchName} guildMember={guildMember} />
     {/* 노블스킬, 길드원 전체 컨테이너 */}
     <section className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
