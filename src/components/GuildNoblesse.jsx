@@ -7,7 +7,7 @@ export default function GuildNoblesse({ guildNoblesse }) {
                     guildNoblesse?.map((item, index) => (
                         <div key={index} className="flex flex-col items-center">
                             <img className="w-8 h-8" src={item.skill_icon} alt={item.skill_name} />
-                            <p className="text-sm"><span>{item.skill_level}</span>/15</p>
+                            <p className="text-sm"><span className="font-bold">{item.skill_level}</span>/15</p>
                         </div>
                     ))
                 }
