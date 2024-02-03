@@ -1,3 +1,4 @@
+import TopButton from "./TopButton";
 
 export default function Top({logoImg}) {
     return (
