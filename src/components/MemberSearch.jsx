@@ -4,6 +4,7 @@ import { charactersImg } from "../lib/charactersImg";
 import { motion } from "framer-motion";
 import { FadeLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import { formatNumber, formatStatValue } from "../lib/functions";
 
 export default function MemberSearch({searchName, guildMember}) {
     // 길드원 ocid 얻기
@@ -38,22 +39,6 @@ export default function MemberSearch({searchName, guildMember}) {
     }
     // console.log(guildMemberCharacterStat);
 
-    // , 정규식
-    function formatStatValue(value) {
-        return value?.stat_value ? value?.stat_value.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : "-";
-    }
-    // 전투력
-    function formatNumber(number) {
-        const 억 = Math.floor(number / 100000000);
-        const 만 = Math.floor((number % 100000000) / 10000);
-        const 나머지 = number % 10000;
-        let result = '';
-        
-        억 > 0 && (result += 억 + '억');
-        만 > 0 && (result += 만 + '만');
-        나머지 > 0 && (result += 나머지);
-        return result;
-    }
     // CSS
     const STAT_NAME = `w-10 font-bold text-center text-[#5CB85C] text-sm bg-gray-200`;
     const STAT_LINE = `w-full flex justify-between items-center`
@@ -145,16 +130,16 @@ export default function MemberSearch({searchName, guildMember}) {
                             )}
                         </div>
                     </div>
+                    <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                        <Link to={`characters/${ocidGuildMember}`} state={{characterData: dataGuildMemberCharacter, characterStat: guildMemberCharacterStat}}>
+                            <div className="p-base bg-[#5CCBF9] text-white-color rounded-md">상세보기</div>
+                        </Link>
+                    </div>
                 </>
                 : <p className="text-center">2023년 12월 21일 이후<br />접속기록이 없는 길드원입니다.</p>
                 :
                 searchName === "" ? "" : <p>길드원이 아닙니다.</p>
             }
-            <div className="w-full flex flex-col justify-center items-end sm:items-center">
-                <Link to={`characters/${ocidGuildMember}`} state={{characterData: dataGuildMemberCharacter, characterStat: guildMemberCharacterStat}}>
-                    <div className="p-base bg-[#5CCBF9] text-white-color rounded-md">상세보기</div>
-                </Link>
-            </div>
             </motion.div>
             }
             </>

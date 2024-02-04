@@ -3,6 +3,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
 import { apiCharacterDojang, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
+import { formatNumber } from '../lib/functions';
+import StatLayout from '../components/StatLayout';
+import StatLayoutLayout from '../components/StatLayoutLayout';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -12,7 +15,7 @@ export default function CharacterDetail() {
     const characterData = location?.state.characterData;
     const characterStat = location?.state.characterStat;
     // console.log("캐릭정보", characterData);
-    // console.log("스텟", characterStat);
+    console.log("스텟", characterStat);
 
     // 유니온
     const { data:dataGuildMemberUnion, isLoading:isLoadingGuildMemberUnion } = 
@@ -35,12 +38,13 @@ export default function CharacterDetail() {
     if(!isLoadingGuildMemberDojang) {
         dojang = dataGuildMemberDojang;
     }
-    console.log(dojang);
+    // console.log(dojang);
 
     return (
         <>
         <Top logoImg="/logo.png" />
-        <section className="w-full overflow-hidden">
+        <section className="w-full overflow-hidden flex flex-col justify-center items-center space-y-4">
+            {/* 캐릭창 */}
             <div className="w-full max-w-5xl p-base flex justify-center items-end space-x-1">
                 {/* 캐릭정보 */}
                 <div className="relative w-48 h-44 flex flex-col flex-shrink-0 justify-end items-center p-base space-y-2">
@@ -66,6 +70,74 @@ export default function CharacterDetail() {
                         <span>무릉도장</span>
                         <span>{dojang?.dojang_best_floor}층</span>
                     </div>
+                </div>
+            </div>
+            {/* 스텟정보창 */}
+            <div className="w-full max-w-80 flex flex-col justify-center items-center space-y-1">
+                {/* 전투력 */}
+                <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
+                    <span>{characterStat[42]?.stat_name}</span>
+                    <span>{formatNumber(characterStat[42]?.stat_value)}</span>
+                </div>
+                {/* 능력치 */}
+                <div className="w-full flex text-white-color bg-[#86939F] rounded-md text-[12px]">
+                    <StatLayoutLayout>
+                        <StatLayout>
+                            {characterStat[20]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[16]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[18]}
+                        </StatLayout>
+                    </StatLayoutLayout>
+                    <StatLayoutLayout>
+                        <StatLayout>
+                            {characterStat[21]}
+                        </StatLayout><StatLayout>
+                            {characterStat[17]}
+                        </StatLayout><StatLayout>
+                            {characterStat[19]}
+                        </StatLayout>
+                    </StatLayoutLayout>
+                </div>
+                {/* 능력치 2 */}
+                <div className="w-full flex text-white-color bg-[#6c7785] rounded-md text-[12px]">
+                    <StatLayoutLayout>
+                        <StatLayout>
+                            {characterStat[1]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[4]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[5]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[40]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[41]}
+                        </StatLayout>
+                    </StatLayoutLayout>
+                    <StatLayoutLayout>
+                        <StatLayout>
+                            {characterStat[2]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[3]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[32]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[6]}
+                        </StatLayout>
+                        <StatLayout>
+                            {characterStat[7]}
+                        </StatLayout>
+                    </StatLayoutLayout>
                 </div>
             </div>
         </section>
