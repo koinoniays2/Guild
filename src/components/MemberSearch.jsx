@@ -3,6 +3,7 @@ import { apiCharacter, apiCharacterStat, apiOcid } from "../js/api";
 import { charactersImg } from "../lib/charactersImg";
 import { motion } from "framer-motion";
 import { FadeLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export default function MemberSearch({searchName, guildMember}) {
     // 길드원 ocid 얻기
@@ -84,71 +85,76 @@ export default function MemberSearch({searchName, guildMember}) {
                 ))
             }
                 {   
-                    guildMember?.includes(searchName) ? ocidGuildMember ?
-                    <>
-                        {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
-                        <div className="w-full flex flex-col justify-center items-end sm:items-center">
-                            <div className="flex flex-col items-center">
-                                <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
-                                <img src={dataGuildMemberCharacter?.character_image} alt="character_img" />
-                            </div>
-                            <div className="flex justify-center items-center space-x-2">
-                                <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
-                                <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
-                            </div>
+                guildMember?.includes(searchName) ? ocidGuildMember ?
+                <>
+                    {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
+                    <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                        <div className="flex flex-col items-center">
+                            <p className="text-lg font-bold">{dataGuildMemberCharacter?.character_name}</p>
+                            <img src={dataGuildMemberCharacter?.character_image} alt="character_img" />
                         </div>
-                        {/* 스텟 정보 */}
-                        <div className="w-full flex flex-col justify-center items-end sm:items-center">
-                            <div className="w-full max-w-80 flex-col space-y-1" >
-                                {/* 전투력 */}
-                                {guildMemberCharacterStat && (
-                                <div className={STAT_LINE}>
-                                    <p className={STAT_NAME}>전투력</p>
-                                    <p className="font-bold">{formatNumber(parseInt(guildMemberCharacterStat[42].stat_value))}</p>
-                                </div>
-                                )}
-                                {/* 스공 */}
-                                {guildMemberCharacterStat && (
-                                <div className={STAT_LINE}>
-                                    <p className={STAT_NAME}>스공</p>
-                                    <p className="font-bold">{`${formatStatValue(guildMemberCharacterStat[0])} 
-                                    ~ ${formatStatValue(guildMemberCharacterStat[1])}`}</p>
-                                </div>
-                                )}
-                                {/* 능력치 */}
-                                {guildMemberCharacterStat && (
-                                <>
-                                <div className={STAT_LINE}>
-                                    {/* HP */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[20]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[20])}</p>
-                                    {/* STR */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[16]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[16])}</p>
-                                    {/* DEX */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[17]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[17])}</p>
-                                </div>
-                                <div className={STAT_LINE}>
-                                    {/* MP */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[21]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[21])}</p>
-                                    {/* INT */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[18]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[18])}</p>
-                                    {/* LUK */}
-                                    <p className={STAT_NAME}>{guildMemberCharacterStat[19]?.stat_name}</p>
-                                    <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[19])}</p>
-                                </div>
-                                </>
-                                )}
-                            </div>
+                        <div className="flex justify-center items-center space-x-2">
+                            <p className="font-bold">{dataGuildMemberCharacter?.character_class}</p>
+                            <p className="text-sm font-bold text-gray-500">Lv.{dataGuildMemberCharacter?.character_level}</p>
                         </div>
-                    </>
-                    : <p className="text-center">2023년 12월 21일 이후<br />접속기록이 없는 길드원입니다.</p>
-                    :
-                    searchName === "" ? "" : <p>길드원이 아닙니다.</p>
-                }
+                    </div>
+                    {/* 스텟 정보 */}
+                    <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                        <div className="w-full max-w-80 flex-col space-y-1" >
+                            {/* 전투력 */}
+                            {guildMemberCharacterStat && (
+                            <div className={STAT_LINE}>
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[42]?.stat_name}</p>
+                                <p className="font-bold">{formatNumber(parseInt(guildMemberCharacterStat[42]?.stat_value))}</p>
+                            </div>
+                            )}
+                            {/* 스공 */}
+                            {guildMemberCharacterStat && (
+                            <div className={STAT_LINE}>
+                                <p className={STAT_NAME}>스공</p>
+                                <p className="font-bold">{`${formatStatValue(guildMemberCharacterStat[0])} 
+                                ~ ${formatStatValue(guildMemberCharacterStat[1])}`}</p>
+                            </div>
+                            )}
+                            {/* 능력치 */}
+                            {guildMemberCharacterStat && (
+                            <>
+                            <div className={STAT_LINE}>
+                                {/* HP */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[20]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[20])}</p>
+                                {/* STR */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[16]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[16])}</p>
+                                {/* DEX */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[17]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[17])}</p>
+                            </div>
+                            <div className={STAT_LINE}>
+                                {/* MP */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[21]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[21])}</p>
+                                {/* INT */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[18]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[18])}</p>
+                                {/* LUK */}
+                                <p className={STAT_NAME}>{guildMemberCharacterStat[19]?.stat_name}</p>
+                                <p className={STAT_DESC}>{formatStatValue(guildMemberCharacterStat[19])}</p>
+                            </div>
+                            </>
+                            )}
+                        </div>
+                    </div>
+                </>
+                : <p className="text-center">2023년 12월 21일 이후<br />접속기록이 없는 길드원입니다.</p>
+                :
+                searchName === "" ? "" : <p>길드원이 아닙니다.</p>
+            }
+            <div className="w-full flex flex-col justify-center items-end sm:items-center">
+                <Link to={`characters/${ocidGuildMember}`} state={{characterData: dataGuildMemberCharacter, characterStat: guildMemberCharacterStat}}>
+                    <div className="p-base bg-[#5CCBF9] text-white-color rounded-md">상세보기</div>
+                </Link>
+            </div>
             </motion.div>
             }
             </>

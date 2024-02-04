@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import CharacterDetail from './routes/CharacterDetail.jsx';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <App />
+      },
+      {
+        path: "characters/:ocid",
+        element: <CharacterDetail />
       }
     ]
   },

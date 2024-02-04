@@ -52,3 +52,31 @@ export async function apiCharacterStat({queryKey}) {
         },
     }).then((res) => res.json());
 }
+// 유니온
+export async function apiCharacterUnion({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        // ocid가 없을 경우 오류 처리 또는 기본값 설정
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/user/union?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
+// 무릉
+export async function apiCharacterDojang({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        // ocid가 없을 경우 오류 처리 또는 기본값 설정
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/dojang?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
