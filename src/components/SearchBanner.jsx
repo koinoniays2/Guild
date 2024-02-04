@@ -109,6 +109,9 @@ export default function Header({bgColor, bgImg}) {
             onChange={inputChange} onKeyDown={onEnter} value={characterName} />
             <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-main-color" onClick={onClick} />
           </div>
+          <div>
+            <p className="text-[12px] text-gray-400">2023년 12월 21일 이후에 접속기록이 있는<br /> 길드원만 조회 가능합니다.</p>
+          </div>
         </div>
         </>
         )}

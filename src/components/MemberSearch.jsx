@@ -59,7 +59,7 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_DESC = `w-16 font-bold text-center`
 
     return (
-        <section className="w-full -translate-y-16 flex flex-col justify-start items-center text-black-color overflow-hidden">
+        <section className="w-full -translate-y-14 flex flex-col justify-start items-center text-black-color overflow-hidden">
             {/* 로딩 화면 */}
             { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
             <div className="w-full h-56 flex items-center justify-center"><FadeLoader color="#5CCBF9" /></div>
@@ -84,7 +84,7 @@ export default function MemberSearch({searchName, guildMember}) {
                 ))
             }
                 {   
-                    guildMember?.includes(searchName) ?
+                    guildMember?.includes(searchName) ? ocidGuildMember ?
                     <>
                         {/* 캐릭터 네임, 이미지, 직업, 레벨 */}
                         <div className="w-full flex flex-col justify-center items-end sm:items-center">
@@ -145,6 +145,7 @@ export default function MemberSearch({searchName, guildMember}) {
                             </div>
                         </div>
                     </>
+                    : <p className="text-center">2023년 12월 21일 이후<br />접속기록이 없는 길드원입니다.</p>
                     :
                     searchName === "" ? "" : <p>길드원이 아닙니다.</p>
                 }
