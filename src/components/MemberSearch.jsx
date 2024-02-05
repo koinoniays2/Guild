@@ -132,7 +132,7 @@ export default function MemberSearch({searchName, guildMember}) {
                     </div>
                     <div className="w-full flex flex-col justify-center items-end sm:items-center">
                         <Link to={`characters/${ocidGuildMember}`} state={{characterData: dataGuildMemberCharacter, characterStat: guildMemberCharacterStat}}>
-                            <div className="p-base bg-[#5CCBF9] text-white-color rounded-md">상세보기</div>
+                            <div className="p-base mt-4 bg-[#5CCBF9] text-white-color rounded-md">상세보기</div>
                         </Link>
                     </div>
                 </>

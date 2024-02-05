@@ -70,10 +70,35 @@ export async function apiCharacterUnion({queryKey}) {
 export async function apiCharacterDojang({queryKey}) {
     const ocid = queryKey[1]?.ocid;
     if (!ocid) {
-        // ocid가 없을 경우 오류 처리 또는 기본값 설정
         throw new Error("ocid is undefined");
     }
     return await fetch(`https://open.api.nexon.com/maplestory/v1/character/dojang?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
+// 장비아이템
+export async function apiCharacterEquipment({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/item-equipment?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
+// 안드로이드
+export async function apiCharacterAndroid({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/android-equipment?ocid=${ocid}&date=${getCurrentDate()}`, {
         method: "GET",
         headers:{
             "x-nxopen-api-key": API_KEY
