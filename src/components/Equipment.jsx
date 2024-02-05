@@ -12,9 +12,6 @@ export default function Equipment({equipment, android}) {
     useEffect(() => {
         setPreset(presetNo);
     }, [presetNo]);
-    console.log(preset1);
-    console.log(android);
-    
     
     return (
         <section className="w-full flex flex-col items-center justify-center space-y-5 py-5">

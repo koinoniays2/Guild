@@ -98,63 +98,78 @@ export default function CharacterDetail() {
                 {/* 능력치 */}
                 <div className="w-full flex text-white-color bg-[#86939F] rounded-md text-[12px]">
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[20]}</StatLayout>
-                        <StatLayout>{characterStat[16]}</StatLayout>
-                        <StatLayout>{characterStat[18]}</StatLayout>
+                    {["HP", "STR", "INT"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[21]}</StatLayout>
-                        <StatLayout>{characterStat[17]}</StatLayout>
-                        <StatLayout>{characterStat[19]}</StatLayout>
+                    {["MP", "DEX", "LUK"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                 </div>
                 {/* 능력치 2 */}
                 <div className="w-full flex text-white-color bg-[#6c7785] rounded-md text-[12px]">
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[1]}</StatLayout>
-                        <StatLayout>{characterStat[4]}</StatLayout>
-                        <StatLayout>{characterStat[5]}</StatLayout>
-                        <StatLayout>{characterStat[40]}</StatLayout>
-                        <StatLayout>{characterStat[41]}</StatLayout>
-                        <StatLayout coolTime={characterStat[34].stat_value}>{characterStat[33]}</StatLayout>
-                        <StatLayout>{characterStat[35]}</StatLayout>
-                        <StatLayout>{characterStat[37]}</StatLayout>
+                    {["최대 스탯공격력", "최종 데미지", "방어율 무시", "공격력", "마력", "재사용 대기시간 감소 (초)", "재사용 대기시간 미적용", "상태이상 추가 데미지"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        slot === "재사용 대기시간 감소 (초)" ? <StatLayout key={item.stat_name} coolTime={characterStat[34].stat_value}>{item}</StatLayout> :
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[2]}</StatLayout>
-                        <StatLayout>{characterStat[3]}</StatLayout>
-                        <StatLayout>{characterStat[32]}</StatLayout>
-                        <StatLayout>{characterStat[6]}</StatLayout>
-                        <StatLayout>{characterStat[7]}</StatLayout>
-                        <StatLayout>{characterStat[30]}</StatLayout>
-                        <StatLayout>{characterStat[36]}</StatLayout>
-                        <StatLayout>{characterStat[43]}</StatLayout>
+                    {["데미지", "보스 몬스터 데미지", "일반 몬스터 데미지", "크리티컬 확률", "크리티컬 데미지", "버프 지속시간", "속성 내성 무시", "소환수 지속시간 증가"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                 </div>
                 {/* 능력치 3 */}
                 <div className="w-full flex text-white-color bg-[#6c7785] rounded-md text-[12px]">
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[29]}</StatLayout>
-                        <StatLayout>{characterStat[28]}</StatLayout>
-                        <StatLayout>{characterStat[39]}</StatLayout>
+                    {["메소 획득량", "아이템 드롭률", "추가 경험치 획득"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[13]}</StatLayout>
-                        <StatLayout>{characterStat[14]}</StatLayout>
-                        <StatLayout>{characterStat[15]}</StatLayout>
+                    {["스타포스", "아케인포스", "어센틱포스"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                 </div>
                 {/* 능력치 4 */}
                 <div className="w-full flex text-white-color bg-[#6c7785] rounded-md text-[12px]">
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[10]}</StatLayout>
-                        <StatLayout>{characterStat[11]}</StatLayout>
-                        <StatLayout>{characterStat[9]}</StatLayout>
+                    {["방어력", "이동속도", "스탠스"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                     <StatLayoutLayout>
-                        <StatLayout>{characterStat[8]}</StatLayout>
-                        <StatLayout>{characterStat[12]}</StatLayout>
-                        <StatLayout>{characterStat[31]}</StatLayout>
+                    {["상태이상 내성", "점프력", "공격 속도"].map((slot) => {
+                    const item = characterStat.find((item) => item.stat_name === slot);
+                    return item ? (
+                        <StatLayout key={item.stat_name}>{item}</StatLayout>
+                    ) : null;
+                    })}
                     </StatLayoutLayout>
                 </div>
             </div>

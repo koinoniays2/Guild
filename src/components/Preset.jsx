@@ -9,7 +9,7 @@ export default function Preset({ preset, android }) {
                 {["반지4", "반지3", "반지2", "반지1", "포켓 아이템"].map((slot) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
-                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_shape_icon} />
+                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_icon} />
                     ) : <EquipmentSlot />;
                 })}
                 </div>
@@ -18,7 +18,7 @@ export default function Preset({ preset, android }) {
                 {["펜던트2", "펜던트", "무기", "벨트"].map((slot) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
-                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_shape_icon} />
+                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_icon} />
                     ) : <EquipmentSlot />;
                 })}
                 </div>
@@ -27,7 +27,7 @@ export default function Preset({ preset, android }) {
                 {["모자", "얼굴장식", "눈장식", "상의", "하의", "신발"].map((slot) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
-                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_shape_icon} />
+                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_icon} />
                     ) : <EquipmentSlot />;
                 })}
                 </div>
@@ -35,12 +35,12 @@ export default function Preset({ preset, android }) {
                 {["귀고리", "어깨장식", "장갑", "안드로이드"].map((slot) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     const androidItem = slot === "안드로이드" ? android.android_name && android : null;
-                    console.log(androidItem);
+                    // console.log(androidItem);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equipmentImg={item.item_shape_icon} />
+                        equipmentImg={item.item_icon} />
                     ) : androidItem ? (
-                        <EquipmentSlot key={androidItem.android_name} equipmentImg={androidItem.android_icon} />
+                        <EquipmentSlot key={androidItem.android_name ? androidItem.android_name : "android-none"} equipmentImg={androidItem.android_icon} />
                     ): <EquipmentSlot />;
                 })}
                 </div>
@@ -48,7 +48,7 @@ export default function Preset({ preset, android }) {
                 {["엠블렘", "뱃지", "훈장", "보조무기", "망토", "기계 심장"].map((slot) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
-                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_shape_icon} />
+                        <EquipmentSlot key={item.item_equipment_slot} equipmentImg={item.item_icon} />
                     ) : <EquipmentSlot />;
                 })}
                 </div>
