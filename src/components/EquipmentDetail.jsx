@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function EquipmentDetail({preset, android}) {
+export default function EquipmentDetail({equiment, android}) {
+    console.log(equiment);
+    console.log(android);
     return (
-        <div>EquipmentDetail</div>
+        <div></div>
     )
 }
