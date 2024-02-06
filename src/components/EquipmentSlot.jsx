@@ -29,7 +29,7 @@ export default function EquipmentSlot({equipment, android}) {
             {/* moMouseEnter시, 장비아이템이 없으면 equiment를 전달하지 않음 true면 전달되어 상태 업데이트되며
             호버상태가 true일때 해당 아이템이 나오는거 */}
             {equipmentOpen &&
-            <section className="w-40 h-[400px] bg-black/70 absolute bottom-0 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
+            <section className="w-40 pb-2 bg-black/70 absolute bottom-0 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
                 <EquipmentDetail equipment={equipment} android={android} />
             </section>
             }
