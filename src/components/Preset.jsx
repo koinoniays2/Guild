@@ -37,7 +37,7 @@ export default function Preset({ preset, android }) {
                 <div className="h-[260px] flex flex-col justify-end space-y-1">
                 {["귀고리", "어깨장식", "장갑", "안드로이드"].map((slot, index) => {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
-                    const androidItem = slot === "안드로이드" ? android.android_name && android : null;
+                    const androidItem = slot === "안드로이드" ? android?.android_name && android : null;
                     // console.log(androidItem);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import EquipmentSlot from './EquipmentSlot';
 import Preset from './Preset';
 
 export default function Equipment({equipment, android}) {
