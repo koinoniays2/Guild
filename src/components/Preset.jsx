@@ -10,7 +10,7 @@ export default function Preset({ preset, android }) {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equipmentImg={item.item_icon} equiment={item} />
+                        equipment={item} />
                     ) : <EquipmentSlot key={`1_col_${index}_none`} />;
                 })}
                 </div>
@@ -20,7 +20,7 @@ export default function Preset({ preset, android }) {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equiment={item}/>
+                        equipment={item}/>
                     ) : <EquipmentSlot key={`2_col_${index}_none`} />;
                 })}
                 </div>
@@ -30,7 +30,7 @@ export default function Preset({ preset, android }) {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equiment={item}/>
+                        equipment={item}/>
                     ) : <EquipmentSlot key={`3_col_${index}_none`} />;
                 })}
                 </div>
@@ -41,7 +41,7 @@ export default function Preset({ preset, android }) {
                     // console.log(androidItem);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equiment={item} />
+                        equipment={item} />
                     ) : androidItem ? (
                         <EquipmentSlot key={androidItem.android_name ? androidItem.android_name : "android-none"} 
                         android={androidItem} />
@@ -53,7 +53,7 @@ export default function Preset({ preset, android }) {
                     const item = preset.find((item) => item.item_equipment_slot === slot);
                     return item ? (
                         <EquipmentSlot key={item.item_equipment_slot} 
-                        equiment={item}/>
+                        equipment={item}/>
                     ) : <EquipmentSlot key={`5_col_${index}_none`} />;
                 })}
                 </div>
