@@ -26,7 +26,7 @@ export default function TopButton() {
     }, []);
 
     return (
-        <div className={`fixed p-4 bottom-0 right-0 cursor-pointer ${isVisible ? 'opacity-100' : 'opacity-0'} z-50`}
+        <div className={`fixed p-5 bottom-0 right-0 cursor-pointer ${isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'} duration-300 z-50`}
             onClick={scrollToTop}>
             <button><FaArrowUp color="#5CCBF9" size="20px" /></button>
         </div>

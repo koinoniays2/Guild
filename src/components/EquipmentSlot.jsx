@@ -20,15 +20,14 @@ export default function EquipmentSlot({equipment, android}) {
     return (
         <div className={`relative w-10 h-10 bg-gray-200
         ${getBorderStyle(potentialGrad, additionalGrad)}`} 
-        // 마우스 호버시 장비아이템, 안드로이드가 있을경우에만 호버상태true
+        // 마우스 호버시 장비아이템, 안드로이드가 있을경우에만 호버상태 true
         onMouseEnter={() => {setEquipmentOpen(equipment?.item_equipment_slot || android?.android_name);}} 
         onMouseLeave={() => setEquipmentOpen(false)}>
             <img className="object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" 
             src={equipment?.item_icon ? equipment.item_icon : android?.android_icon ? android.android_icon : ""}
             alt={equipment?.item_icon ? equipment.item_icon : android?.android_icon ? android.android_icon : ""}/>
-            {/* moMouseEnter시, 장비아이템이 없으면 equiment를 전달하지 않음 true면 전달되어 상태 업데이트되며
-            호버상태가 true일때 해당 아이템이 나오는거 */}
             {equipmentOpen &&
+            //  pointerEvents: "none" : 장비 디테일 호버창은 영향 받지않게 하기(뒤에 가려진 장비 요소들에 바로 호버 가능)
             <section className="w-[166px] px-1 pb-2 bg-black/70 absolute bottom-0 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
                 <EquipmentDetail equipment={equipment} android={android} />
             </section>

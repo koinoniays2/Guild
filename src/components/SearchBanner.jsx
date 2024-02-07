@@ -121,7 +121,7 @@ export default function Header({bgColor, bgImg}) {
     <MemberSearch searchName={searchName} guildMember={guildMember} />
     {/* 노블스킬, 길드원 전체 컨테이너 */}
     <section className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
-        <div className="w-full p-base max-w-5xl flex flex-col items-center py-16 space-y-16 z-50">
+        <div className="w-full p-base max-w-5xl flex flex-col items-center py-16 space-y-16">
           {/* 노블스킬 */}
           <GuildNoblesse guildNoblesse={guildNoblesse} />
           {/* 길드원 */}

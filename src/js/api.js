@@ -1,3 +1,4 @@
+import qs from "qs";
 import getCurrentDate from "./currentDate";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -104,4 +105,19 @@ export async function apiCharacterAndroid({queryKey}) {
             "x-nxopen-api-key": API_KEY
         },
     }).then((res) => res.json());
+}
+
+// 이메일
+export async function apiPostGoogleMail(data) {
+    try {
+        return await fetch("https://script.google.com/macros/s/AKfycby7O9cp1nlcG7ABIEYIn0vAIm1Fzaz-CcY3ETp_2I5k4ZnPUVBuLezR986PcXIwGw9Z/exec", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/x-www-form-urlencoded" 
+            },
+            body: qs.stringify(data)
+        }).then((res) => res.json())
+    } catch(error) {
+        console.log(error);
+    }
 }
