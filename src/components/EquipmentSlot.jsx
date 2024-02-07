@@ -18,7 +18,7 @@ export default function EquipmentSlot({equipment, android}) {
     const additionalGrad = equipment?.additional_potential_option_grade;
     
     return (
-        <div className={`relative w-10 h-10 bg-gray-200 
+        <div className={`relative w-10 h-10 bg-gray-200
         ${getBorderStyle(potentialGrad, additionalGrad)}`} 
         // 마우스 호버시 장비아이템, 안드로이드가 있을경우에만 호버상태true
         onMouseEnter={() => {setEquipmentOpen(equipment?.item_equipment_slot || android?.android_name);}} 
@@ -29,7 +29,7 @@ export default function EquipmentSlot({equipment, android}) {
             {/* moMouseEnter시, 장비아이템이 없으면 equiment를 전달하지 않음 true면 전달되어 상태 업데이트되며
             호버상태가 true일때 해당 아이템이 나오는거 */}
             {equipmentOpen &&
-            <section className="w-40 pb-2 px-1 bg-black/70 absolute bottom-0 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
+            <section className="w-[166px] px-1 pb-2 bg-black/70 absolute bottom-0 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
                 <EquipmentDetail equipment={equipment} android={android} />
             </section>
             }

@@ -42,9 +42,9 @@ export default function EquipmentDetail({ equipment, android }) {
     const upgradeCount = equipment?.scroll_upgrade;
 
     return (
-        <div className="flex flex-col justify-center items-center px-1 space-y-1">
+        <div className="flex flex-col justify-center items-center space-y-1">
             {/* 스타포스 */}
-            <div className="flex flex-wrap justify-center items-center px-1">
+            <div className="flex flex-wrap justify-center items-center px-3">
                 {
                 equipment?.starforce &&
                 [...Array(parseInt(equipment?.starforce))].map((_, index) => (
