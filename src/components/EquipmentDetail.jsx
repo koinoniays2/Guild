@@ -152,9 +152,8 @@ export default function EquipmentDetail({ equipment, android }) {
                 </div>
             </div>
             {/* 장비 잠재 */}
-            {(equipment?.potential_option_grade || equipment?.additional_potential_option_grade) ? (
-            // 윗잠
-            <>
+            {/* 윗잠 */}
+            {equipment?.potential_option_grade ? (
             <div className={POTENTIAL}>
                 <div className="flex items-center space-x-1">
                     <div className={LUER}
@@ -170,7 +169,9 @@ export default function EquipmentDetail({ equipment, android }) {
                     <p>{equipment?.potential_option_3}</p>
                 </div>
             </div>
+            ) : ""}
             {/* 아랫잠 */}
+            {equipment?.additional_potential_option_grade ? (
             <div className={POTENTIAL}>
                 <div className="flex items-center space-x-1">
                     <div className={LUER}
@@ -186,7 +187,6 @@ export default function EquipmentDetail({ equipment, android }) {
                     <p>{equipment?.additional_potential_option_3}</p>
                 </div>
             </div>
-            </>
             ): ""}
             {/* 설명 */}
             {equipment?.item_description ? (
