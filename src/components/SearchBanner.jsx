@@ -6,6 +6,8 @@ import { FaSearch } from "react-icons/fa";
 import { FadeLoader  } from "react-spinners";
 import GuildNoblesse from "./GuildNoblesse";
 import MemberList from "./MemberList";
+import { FaArrowDown } from "react-icons/fa";
+import { Link } from "react-scroll";
 
 export default function Header({bgColor, bgImg}) {
   // 길드 정보 불러오기
@@ -62,7 +64,7 @@ export default function Header({bgColor, bgImg}) {
   return (
     <>
     {/* 백그라운드 컬러(props) */}
-    <section className={`relative w-full flex flex-col sm:flex-row item-center justify-center overflow-hidden ${bgColor}`}>
+    <section className={`relative w-full flex flex-col py-10 sm:flex-row item-center justify-center overflow-hidden ${bgColor}`}>
       {/* 백그라운드 이미지(props) */}
       { bgImg && 
       <>
@@ -70,7 +72,7 @@ export default function Header({bgColor, bgImg}) {
       <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
       </>}
       {/* 전체 너비 지정 */}
-      <div className="z-10 p-base py-10 flex sm:justify-center">
+      <div className="z-10 p-base pb-5 flex sm:justify-center">
         {/* 로딩 화면 */}
         {isLoadingGuild || isLoadingMaster || isLoadingMasterCharacter ?
         <div className="w-full flex items-center justify-center"><FadeLoader color="gray" /></div>
@@ -109,6 +111,14 @@ export default function Header({bgColor, bgImg}) {
             onChange={inputChange} onKeyDown={onEnter} value={characterName} />
             <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-main-color" onClick={onClick} />
           </div>
+          <Link
+          to="guild-member-scroll-section"
+          spy={true}
+          smooth={true}
+          duration={500}>
+            <div className="w-fit bg-black text-white-color px-3 py-1 rounded-lg text-sm flex items-center cursor-pointer">
+              길드원 목록 보기&nbsp;&nbsp;<FaArrowDown /></div>
+          </Link>
           <div>
             <p className="text-[12px] text-gray-400">2023년 12월 21일 이후 접속기록이 있는<br /> 길드원만 조회 가능합니다.</p>
           </div>
@@ -122,7 +132,7 @@ export default function Header({bgColor, bgImg}) {
     {/* 검색 결과 */}
     <MemberSearch searchName={searchName} guildMember={guildMember} />
     {/* 길드원 전체 컨테이너 */}
-    <section className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
+    <section id="guild-member-scroll-section" className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
         <div className="w-full p-base max-w-5xl flex flex-col items-center py-10 pb-16">
           {/* 길드원 */}
           <MemberList guildMember={guildMember} />
