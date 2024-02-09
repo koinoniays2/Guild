@@ -7,7 +7,7 @@ import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
 import StatLayoutLayout from '../components/StatLayoutLayout';
 import Equipment from '../components/Equipment';
-import TopButton from '../components/Topbutton';
+import TopButton from '../components/TopButton';
 import MailButton from '../components/MailButton';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
