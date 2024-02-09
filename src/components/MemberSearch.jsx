@@ -6,7 +6,7 @@ import { FadeLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import { formatNumber, formatStatValue } from "../lib/functions";
 
-export default function MemberSearch({searchName, guildMember}) {
+export default function MemberSearch({searchName, guildMember, searchResultRef}) {
     // 길드원 ocid 얻기
     const { data:dataGuildMember, isLoading:isLoadingGuildMember } = 
     useQuery(["getGuildMember", { name: searchName }], apiOcid, {
@@ -45,7 +45,7 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_DESC = `w-16 font-bold text-center`
 
     return (
-        <section className="w-full -translate-y-8 flex flex-col justify-start items-center text-black-color overflow-hidden">
+        <section ref={searchResultRef} className="w-full -translate-y-8 flex flex-col justify-start items-center text-black-color overflow-hidden">
             {/* 로딩 화면 */}
             { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
             <div className="w-full h-56 flex items-center justify-center"><FadeLoader color="#5CCBF9" /></div>

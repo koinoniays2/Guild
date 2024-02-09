@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { apiGuild, apiCharacter, apiOcid } from "../js/api";
 import { useQuery } from "react-query";
 import MemberSearch from "./MemberSearch";
@@ -54,12 +54,16 @@ export default function Header({bgColor, bgImg}) {
   const onClick = () => {
     setSearchName(characterName);
     setCharacterName("");
+    if (searchResultRef.current) {
+      searchResultRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }
   const onEnter = (e) => {
     if (e.key === "Enter") {
       onClick();
     }
   }
+  const searchResultRef = useRef(null);
 
   return (
     <>
@@ -107,7 +111,7 @@ export default function Header({bgColor, bgImg}) {
           </div>
           {/* 길드 내 길드원 검색 */}
           <div className="relative w-full text-black-color">
-            <input className="w-full px-2 py-1 outline-none rounded-md block" size="16" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
+          <input className="w-full px-2 py-1 outline-none rounded-md block" size="16" type="text" placeholder={`${dataGuild?.guild_name} 길드원 검색`}
             onChange={inputChange} onKeyDown={onEnter} value={characterName} />
             <FaSearch className="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-main-color" onClick={onClick} />
           </div>
@@ -130,7 +134,7 @@ export default function Header({bgColor, bgImg}) {
       <GuildNoblesse guildNoblesse={guildNoblesse} />
     </section>
     {/* 검색 결과 */}
-    <MemberSearch searchName={searchName} guildMember={guildMember} />
+    <MemberSearch searchName={searchName} guildMember={guildMember} searchResultRef={searchResultRef} />
     {/* 길드원 전체 컨테이너 */}
     <section id="guild-member-scroll-section" className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
         <div className="w-full p-base max-w-5xl flex flex-col items-center py-10 pb-16">

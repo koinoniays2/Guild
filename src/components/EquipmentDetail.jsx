@@ -56,7 +56,7 @@ export default function EquipmentDetail({ equipment, android }) {
         { key: "equipment_level_decrease", label: "착용 레벨 감소" },
         { key: "base_equipment_level", label: "REQ LEV" }
         ]
-    console.log(equipment);
+    // console.log(equipment);
     // console.log(android);
     // 소울
     const soul = equipment?.soul_name;
