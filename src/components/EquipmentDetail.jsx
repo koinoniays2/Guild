@@ -11,6 +11,29 @@ export function getGrad(potentialGrad, additionalGrad) {
         ""
     );
 }
+// 잠재 색깔
+export function potentialColor(equipment) {
+    return (
+        ( equipment === "레전드리" ) ? "#00ff00" :
+        ( equipment === "유니크" ) ? "#ffcc00" :
+        ( equipment === "에픽" ) ? "#9966ff" :
+        ( equipment === "레어" ) ? "#66ffff" :
+        ""
+    );
+}
+// 잠재 문구
+const POTENTIAL = "w-full border-t pt-1 border-dashed border-gray-400"
+const LUER = "w-3 h-3 border border-white text-[11px] flex p-1.5 justify-center items-center text-white-color font-bold"
+export function potentialText(equipment) {
+    return (
+        ( equipment === "레전드리" ) ? "L" :
+        ( equipment === "유니크" ) ? "U" :
+        ( equipment === "에픽" ) ? "E" :
+        ( equipment === "레어" ) ? "R" :
+        ""
+    );
+}
+
 export default function EquipmentDetail({ equipment, android }) {
     const option =  [
         { key: "str", label: "STR" },
@@ -63,12 +86,20 @@ export default function EquipmentDetail({ equipment, android }) {
                 <p className="text-white-color text-center text-[12px]">{getGrad(equipment?.potential_option_grade, equipment?.additional_potential_option_grade)}</p>
             </div>
             {/* 모루 이미지 */}
-            <div className="w-full flex justify-start items-center">
+            <div className="w-full flex justify-start items-end space-x-2">
                 {
                 <img className={`w-10 h-10 object-contain p-1
                 ${getBorderStyle(equipment?.potential_option_grade, equipment?.additional_potential_option_grade)}`} 
                 src={equipment && equipment.item_shape_icon ? equipment.item_shape_icon : android && android.android_icon ? android.android_icon : ''} alt="item_shape_icon" />
                 }
+                {/* 장비 착용 레벨 */}
+                <div>
+                    {
+                    equipment?.item_base_option?.base_equipment_level ?
+                    <p className="text-[#FFCC00] text-[12px]">REQ LEV: {equipment?.item_base_option?.base_equipment_level}</p>
+                    : ""
+                    }
+                </div>
             </div>
             {/* 장비 능력치 */}
             <div className="w-full flex flex-col justify-center items-start">
@@ -120,6 +151,51 @@ export default function EquipmentDetail({ equipment, android }) {
                 })}
                 </div>
             </div>
+            {/* 장비 잠재 */}
+            {(equipment?.potential_option_grade || equipment?.additional_potential_option_grade) ? (
+            // 윗잠
+            <>
+            <div className={POTENTIAL}>
+                <div className="flex items-center space-x-1">
+                    <div className={LUER}
+                    style={{clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
+                    backgroundColor: potentialColor(equipment?.potential_option_grade)}}>
+                    {potentialText(equipment?.potential_option_grade)}
+                    </div>
+                    <p className="text-[12px]" style={{color: potentialColor(equipment?.potential_option_grade)}}>잠재옵션</p>
+                </div>
+                <div className="text-[11px] text-white-color">
+                    <p>{equipment?.potential_option_1}</p>
+                    <p>{equipment?.potential_option_2}</p>
+                    <p>{equipment?.potential_option_3}</p>
+                </div>
+            </div>
+            {/* 아랫잠 */}
+            <div className={POTENTIAL}>
+                <div className="flex items-center space-x-1">
+                    <div className={LUER}
+                    style={{clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
+                    backgroundColor: potentialColor(equipment?.additional_potential_option_grade)}}>
+                    {potentialText(equipment?.additional_potential_option_grade)}
+                    </div>
+                    <p className="text-[12px]" style={{color: potentialColor(equipment?.additional_potential_option_grade)}}>에디셔널 잠재옵션</p>
+                </div>
+                <div className="text-[11px] text-white-color">
+                    <p>{equipment?.additional_potential_option_1}</p>
+                    <p>{equipment?.additional_potential_option_2}</p>
+                    <p>{equipment?.additional_potential_option_3}</p>
+                </div>
+            </div>
+            </>
+            ): ""}
+            {/* 설명 */}
+            {equipment?.item_description ? (
+            <div className={POTENTIAL}>
+                <p className="text-[11px] text-white-color">{equipment?.item_description}</p>
+                {equipment.special_ring_level ?
+                <p className="text-[11px] text-[#ffaa00]">{`[특수 스킬 반지] ${equipment?.item_name} ${equipment?.special_ring_level}레벨`}</p>: ""}
+            </div>
+            ) : "" }
         </div>
     )
 }
