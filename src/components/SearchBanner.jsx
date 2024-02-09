@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { apiGuild, apiCharacter, apiOcid } from "../js/api";
 import { useQuery } from "react-query";
 import MemberSearch from "./MemberSearch";
@@ -9,7 +9,7 @@ import MemberList from "./MemberList";
 import { FaArrowDown } from "react-icons/fa";
 import { Link } from "react-scroll";
 
-export default function Header({bgColor, bgImg}) {
+export default function SearchBanner({bgColor, bgImg}) {
   // 길드 정보 불러오기
   const { data:dataGuild, isLoading:isLoadingGuild } = useQuery(["getGuild"], apiGuild, {
     staleTime: 24 * 60 * 60 * 1000
@@ -51,11 +51,13 @@ export default function Header({bgColor, bgImg}) {
   };
   // 넘기기 위한 인풋 값 담기
   const [searchName, setSearchName] = useState("");
+  // 검색 한 곳으로 이동
+  const searchResultRef = useRef(null);
   const onClick = () => {
     setSearchName(characterName);
     setCharacterName("");
     if (searchResultRef.current) {
-      searchResultRef.current.scrollIntoView({ behavior: 'smooth' });
+      searchResultRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
   const onEnter = (e) => {
@@ -63,7 +65,13 @@ export default function Header({bgColor, bgImg}) {
       onClick();
     }
   }
-  const searchResultRef = useRef(null);
+   // 클릭한 항목 처리 함수
+  const handleItemClick = (item) => {
+    setSearchName(item); // 클릭한 항목을 상태에 저장
+    if (searchResultRef.current) {
+      searchResultRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   return (
     <>
@@ -120,7 +128,7 @@ export default function Header({bgColor, bgImg}) {
           spy={true}
           smooth={true}
           duration={500}>
-            <div className="w-fit bg-black text-white-color px-3 py-1 rounded-lg text-sm flex items-center cursor-pointer">
+            <div className="w-fit bg-blue-400 hover:bg-blue-500 duration-300 text-white-color px-3 py-1 rounded-lg text-sm flex items-center cursor-pointer">
               길드원 목록 보기&nbsp;&nbsp;<FaArrowDown /></div>
           </Link>
           <div>
@@ -139,7 +147,7 @@ export default function Header({bgColor, bgImg}) {
     <section id="guild-member-scroll-section" className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
         <div className="w-full p-base max-w-5xl flex flex-col items-center py-10 pb-16">
           {/* 길드원 */}
-          <MemberList guildMember={guildMember} />
+          <MemberList guildMember={guildMember} onItemClick={handleItemClick} />
         </div>
     </section>
     </>

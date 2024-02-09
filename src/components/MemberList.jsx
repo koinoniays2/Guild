@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
-export default function MemberList({ guildMember }) {
+export default function MemberList({ guildMember, onItemClick }) {
+    const handleItemClick = (item) => {
+        onItemClick(item); // 클릭한 항목을 부모 컴포넌트로 전달
+    };
 
     // 클릭하면 길드원 30명씩 보이기
     const buttonNum = Array.from({ length: Math.ceil(guildMember?.length / 30) });
@@ -31,7 +34,8 @@ export default function MemberList({ guildMember }) {
                 {
                     guildMember?.map((item, index) => (
                         firstNum <= index && index <= lastNum && (
-                            <p className="w-1/3 md:w-1/4 lg:w-1/5 mt-2 text-center text-sm" key={index}>{item}</p>
+                            <p onClick={() => handleItemClick(item)}
+                            className="w-1/3 md:w-1/4 lg:w-1/5 mt-2 text-center text-sm cursor-pointer hover:scale-110 duration-300" key={index}>{item}</p>
                         )
                     ))
                 }
