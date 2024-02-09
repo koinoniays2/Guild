@@ -56,7 +56,7 @@ export default function EquipmentDetail({ equipment, android }) {
         { key: "equipment_level_decrease", label: "착용 레벨 감소" },
         { key: "base_equipment_level", label: "REQ LEV" }
         ]
-    // console.log(equipment);
+    console.log(equipment);
     // console.log(android);
     // 소울
     const soul = equipment?.soul_name;
@@ -194,6 +194,12 @@ export default function EquipmentDetail({ equipment, android }) {
                 <p className="text-[11px] text-white-color">{equipment?.item_description}</p>
                 {equipment.special_ring_level ?
                 <p className="text-[11px] text-[#ffaa00]">{`[특수 스킬 반지] ${equipment?.item_name} ${equipment?.special_ring_level}레벨`}</p>: ""}
+            </div>
+            ) : "" }
+            {/* 모루 */}
+            {equipment?.item_shape_name && (equipment?.item_name !== equipment?.item_shape_name) ? (
+            <div className={POTENTIAL}>
+                <p className="text-[11px] text-[#ccff00]">{`신비의 모루에 의해 [${equipment?.item_shape_name}]의 외형이 합성됨`}</p>
             </div>
             ) : "" }
         </div>
