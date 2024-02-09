@@ -123,7 +123,7 @@ export default function Header({bgColor, bgImg}) {
     <MemberSearch searchName={searchName} guildMember={guildMember} />
     {/* 길드원 전체 컨테이너 */}
     <section className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
-        <div className="w-full p-base max-w-5xl flex flex-col items-center py-10">
+        <div className="w-full p-base max-w-5xl flex flex-col items-center py-10 pb-16">
           {/* 길드원 */}
           <MemberList guildMember={guildMember} />
         </div>
