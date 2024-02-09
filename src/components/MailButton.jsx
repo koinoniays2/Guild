@@ -26,7 +26,7 @@ export default function MailButton() {
         onClick={() => setEmail(false)}>
             <div 
             onClick={(e) => e.stopPropagation()} // 부모 이벤트 받지않기
-            className="fixed bottom-20 left-5 w-full max-w-80 h-2/3 bg-white-color/90 z-40 rounded-xl overflow-hidden">
+            className="fixed bottom-20 left-5 w-full max-w-80 h-[80%] bg-white-color/90 z-40 rounded-xl overflow-hidden">
                 {/* 메일 폼 */}
                 <Email />
             </div>
