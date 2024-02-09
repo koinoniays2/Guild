@@ -27,7 +27,7 @@ export default function Email() {
             </div>
             <form className="w-full h-full"
             onSubmit={handleSubmit(ouSubmit)}>
-                <div className="w-full h-full flex flex-col justify-center items-center py-5 p-base space-y-7">
+                <div className="w-full h-full flex flex-col py-5 justify-center items-center p-base space-y-8">
                     {/* 이름 input */}
                     <div className="w-full">
                         <input className="outline-none w-full p-2 rounded-lg" type="text" placeholder="이름"
