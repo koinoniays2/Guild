@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { apiPostGoogleMail } from '../js/api';
 
-export default function Email({mailOpen}) {
+export default function Email() {
     const [submitOk, setSubmitOk] = useState(false);
     const { register, handleSubmit, formState: {errors}, reset } = useForm({mode: "onChange"});
     const { mutate, data, isLoading } = useMutation(apiPostGoogleMail, { // data: 서버에서 보내준 데이터, isLoading:전송중, 전송하기 버튼설정
@@ -27,7 +27,7 @@ export default function Email({mailOpen}) {
             </div>
             <form className="w-full h-full"
             onSubmit={handleSubmit(ouSubmit)}>
-                <div className="w-full h-full flex flex-col justify-center items-center p-base space-y-7">
+                <div className="w-full h-full flex flex-col justify-center items-center py-5 p-base space-y-7">
                     {/* 이름 input */}
                     <div className="w-full">
                         <input className="outline-none w-full p-2 rounded-lg" type="text" placeholder="이름"
