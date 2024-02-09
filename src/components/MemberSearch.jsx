@@ -45,7 +45,7 @@ export default function MemberSearch({searchName, guildMember}) {
     const STAT_DESC = `w-16 font-bold text-center`
 
     return (
-        <section className="w-full -translate-y-14 flex flex-col justify-start items-center text-black-color overflow-hidden">
+        <section className="w-full -translate-y-8 flex flex-col justify-start items-center text-black-color overflow-hidden">
             {/* 로딩 화면 */}
             { isLoadingGuildMember || isLoadingGuildMemberCharacter || isLoadingGuildMemberCharacterStat ?
             <div className="w-full h-56 flex items-center justify-center"><FadeLoader color="#5CCBF9" /></div>

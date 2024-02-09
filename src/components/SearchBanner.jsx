@@ -62,7 +62,7 @@ export default function Header({bgColor, bgImg}) {
   return (
     <>
     {/* 백그라운드 컬러(props) */}
-    <section className={`relative w-full h-[400px] flex justify-center overflow-hidden ${bgColor}`}>
+    <section className={`relative w-full flex flex-col sm:flex-row item-center justify-center overflow-hidden ${bgColor}`}>
       {/* 백그라운드 이미지(props) */}
       { bgImg && 
       <>
@@ -70,14 +70,14 @@ export default function Header({bgColor, bgImg}) {
       <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
       </>}
       {/* 전체 너비 지정 */}
-      <div className="z-10 w-full p-base flex sm:justify-center">
+      <div className="z-10 p-base py-10 flex sm:justify-center">
         {/* 로딩 화면 */}
         {isLoadingGuild || isLoadingMaster || isLoadingMasterCharacter ?
         <div className="w-full flex items-center justify-center"><FadeLoader color="gray" /></div>
         :(
         <>
         {/* 길드 정보 배경 블러 */}        
-        <div className="flex flex-col w-fit h-fit mt-5 p-5 space-y-3 rounded-xl bg-white/10 text-white-color"
+        <div className="flex flex-col w-fit h-fit p-5 space-y-3 rounded-xl bg-white/10 text-white-color"
         style={{backdropFilter: "blur(5px)"}}>
           {/* 서버 네임 */}
           <div className="w-16 h-8 rounded-lg bg-black-color">
@@ -116,14 +116,14 @@ export default function Header({bgColor, bgImg}) {
         </>
         )}
       </div>
+      {/* 노블스킬 */}
+      <GuildNoblesse guildNoblesse={guildNoblesse} />
     </section>
     {/* 검색 결과 */}
     <MemberSearch searchName={searchName} guildMember={guildMember} />
-    {/* 노블스킬, 길드원 전체 컨테이너 */}
+    {/* 길드원 전체 컨테이너 */}
     <section className="w-full flex flex-col justify-start items-center bg-black-color text-white-color overflow-hidden">
-        <div className="w-full p-base max-w-5xl flex flex-col items-center py-16 space-y-16">
-          {/* 노블스킬 */}
-          <GuildNoblesse guildNoblesse={guildNoblesse} />
+        <div className="w-full p-base max-w-5xl flex flex-col items-center py-10">
           {/* 길드원 */}
           <MemberList guildMember={guildMember} />
         </div>
