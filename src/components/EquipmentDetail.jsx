@@ -149,6 +149,9 @@ export default function EquipmentDetail({ equipment, android }) {
                         ) : ""
                     );
                 })}
+                {
+                android && <span className="text-[11px] text-white-color">등급: {android?.android_grade}</span>
+                }
                 </div>
             </div>
             {/* 장비 잠재 */}
@@ -196,6 +199,11 @@ export default function EquipmentDetail({ equipment, android }) {
                 <p className="text-[11px] text-[#ffaa00]">{`[특수 스킬 반지] ${equipment?.item_name} ${equipment?.special_ring_level}레벨`}</p>: ""}
             </div>
             ) : "" }
+            {android?.android_description ? (
+            <div className={POTENTIAL}>
+                <p className="text-[11px] text-white-color">{android.android_description}</p>
+            </div>
+            ): "" }
             {/* 모루 */}
             {equipment?.item_shape_name && (equipment?.item_name !== equipment?.item_shape_name) ? (
             <div className={POTENTIAL}>

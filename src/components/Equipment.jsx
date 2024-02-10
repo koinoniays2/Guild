@@ -13,7 +13,7 @@ export default function Equipment({equipment, android}) {
     }, [presetNo]);
     
     return (
-        <section className="w-full flex flex-col items-center justify-center space-y-5 py-5">
+        <section className="w-fit flex flex-col items-center justify-center space-y-5 py-5">
             { 
             preset === 1 &&
             <Preset preset={preset1} android={android} />
