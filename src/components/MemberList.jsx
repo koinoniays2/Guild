@@ -21,7 +21,10 @@ export default function MemberList({ guildMember, onItemClick }) {
 
     return (
         <div className="flex flex-col justify-center items-center space-y-5">
-            <p className="w-20 py-1 text-center bg-black rounded-lg">길드원</p>
+            <div className="flex flex-col justify-center items-center sm:flex-row space-x-3">
+                <p className="w-20 py-1 text-center bg-black rounded-lg">길드원</p>
+                <span className="text-gray-300 text-sm">검색하실 길드원을 클릭하세요.</span>
+            </div>
             <div className="w-full flex justify-center space-x-3">
                 {
                     buttonNum.map((_, index) => (

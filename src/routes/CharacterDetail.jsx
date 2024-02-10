@@ -9,6 +9,7 @@ import StatLayoutLayout from '../components/StatLayoutLayout';
 import Equipment from '../components/Equipment';
 import TopButton from '../components/TopButton';
 import MailButton from '../components/MailButton';
+import Footer from '../components/Footer';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -183,8 +184,9 @@ export default function CharacterDetail() {
                 <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
             </div>
             {/* 임시 div */}
-            <div className="w-full h-44"></div>
+            <div className="w-full h-20"></div>
         </section>
+        <Footer logoImg="/logo.png" logoCreator="하풍다풍" />
         <TopButton />
         <MailButton />
         </>
