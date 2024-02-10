@@ -6,7 +6,7 @@ export function getGrad(potentialGrad, additionalGrad) {
     return (
         (potentialGrad === "레전드리" || additionalGrad === "레전드리") ? "(레전드리 아이템)" :
         (potentialGrad === "유니크" || additionalGrad === "유니크") ? "(유니크 아이템)" :
-        (potentialGrad === "에픽" || additionalGrad === "에픽") ? "(에픽 아이템)}" :
+        (potentialGrad === "에픽" || additionalGrad === "에픽") ? "(에픽 아이템)" :
         (potentialGrad === "레어" || additionalGrad === "레어") ? "(레어 아이템)" :
         ""
     );
