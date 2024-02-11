@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 export default function MemberList({ guildMember, onItemClick }) {
     const handleItemClick = (item) => {
@@ -10,6 +10,7 @@ export default function MemberList({ guildMember, onItemClick }) {
     const [btnNum, setBtnNum] = useState(0);
     let [firstNum, setFirstNum] = useState(0);
     let [lastNum, setLastNum] = useState(29);
+
     const btnOnclick = (index) => {
         const newFirstNum = index * 30;
         const newLastNum = Math.min(newFirstNum + 29, guildMember?.length - 1);
@@ -17,6 +18,32 @@ export default function MemberList({ guildMember, onItemClick }) {
         setBtnNum(index);
         setFirstNum(newFirstNum);
         setLastNum(newLastNum);
+    }
+
+        
+    // 드래그 시작 좌표
+    let dragStartX = 0;
+    // 드래그 이벤트 핸들러
+    const handleDragStart = (event) => {
+        // 첫 번째 터치의 X 좌표를 저장
+        dragStartX = event.touches[0].clientX;
+    }
+
+    const handleDragEnd = (event) => {
+        const dragEndX = event.changedTouches[0].clientX;
+        const threshold = 50; // 드래그로 감지할 최소 이동 거리
+
+        if (dragStartX - dragEndX > threshold) {
+            if (btnNum < buttonNum.length - 1) {
+                setBtnNum(btnNum + 1);
+                btnOnclick(btnNum + 1);
+            }
+        } else if (dragEndX - dragStartX > threshold) {
+            if (btnNum > 0) {
+                setBtnNum(btnNum - 1);
+                btnOnclick(btnNum - 1);
+            }
+        }
     }
 
     return (
@@ -33,15 +60,15 @@ export default function MemberList({ guildMember, onItemClick }) {
                     ))
                 }
             </div>
-            <div className={`w-full flex flex-wrap justify-center overflow-hidden`}>
-                {
-                    guildMember?.map((item, index) => (
+            <div className={`w-full flex flex-wrap justify-center overflow-hidden`}
+                onTouchStart={handleDragStart}
+                onTouchEnd={handleDragEnd}>
+                {guildMember?.map((item, index) => (
                         firstNum <= index && index <= lastNum && (
                             <p onClick={() => handleItemClick(item)}
                             className="w-1/3 md:w-1/4 lg:w-1/5 mt-2 text-center text-sm cursor-pointer hover:scale-110 duration-300" key={index}>{item}</p>
                         )
-                    ))
-                }
+                    ))}
             </div>
         </div>
     )
