@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Preset from './EquipmentPreset';
+import EquipmentPreset from './EquipmentPreset';
 import PresetButton from './PresetButton';
 
 export default function Equipment({equipment, android}) {
@@ -12,16 +12,17 @@ export default function Equipment({equipment, android}) {
     
     return (
         <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-2 rounded-lg bg-gray-200">
+            <p className="text-black-color uppercase font-bold w-full text-left">equiment</p>
             {presetTrue ? (
             <>
-            {preset === 1 && <Preset preset={preset1} android={android} />}
-            {preset === 2 && <Preset preset={preset2} android={android} />}
-            {preset === 3 && <Preset preset={preset3} android={android} />}
+            {preset === 1 && <EquipmentPreset preset={preset1} android={android} />}
+            {preset === 2 && <EquipmentPreset preset={preset2} android={android} />}
+            {preset === 3 && <EquipmentPreset preset={preset3} android={android} />}
             {/* 버튼 */}
             <PresetButton presetKinds={equipment} preset={preset} setPreset={setPreset} />
             </>
             ) : (
-            <Preset preset={equipment?.item_equipment} android={android}/>
+            <EquipmentPreset preset={equipment?.item_equipment} android={android}/>
             )}
         </section>
     )

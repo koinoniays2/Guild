@@ -11,7 +11,7 @@ export default function HyperStatPreset({hyper}) {
             <div key={index} className="w-full flex justify-between items-start space-x-5">
                 <div>
                     {item.stat_level !== 0 ? <p>{item.stat_type}
-                    {item.stat_level !== 0 ? <span className="bg-gray-500 m-0.5">{`Lv.${item.stat_level}`}</span> : ""}</p> : ""}
+                    {item.stat_level !== 0 ? <span className="bg-gray-500 px-1 m-0.5 rounded-md">{`Lv.${item.stat_level}`}</span> : ""}</p> : ""}
                     
                 </div>
                 {/* 하이퍼스탯 효과 */}

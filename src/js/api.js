@@ -93,6 +93,19 @@ export async function apiCharacterEquipment({queryKey}) {
         },
     }).then((res) => res.json());
 }
+// 펫장비
+export async function apiCharacterPetEquipment({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/pet-equipment?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
 // 안드로이드
 export async function apiCharacterAndroid({queryKey}) {
     const ocid = queryKey[1]?.ocid;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
-import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterUnion } from '../js/api';
+import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
 import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
@@ -12,6 +12,7 @@ import MailButton from '../components/MailButton';
 import Footer from '../components/Footer';
 import Ability from '../components/Ability';
 import HyperStat from '../components/HyperStat';
+import PetEquipment from '../components/PetEquipment';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -53,6 +54,13 @@ export default function CharacterDetail() {
     });
     // console.log(dataGuildMemberEquipment.item_equipment_preset1);
     // console.log(dataGuildMemberEquipment.item_equipment_preset_1);
+    // 펫
+    const { data:dataGuildMemberPetEquipment, isLoading:isLoadingGuildMemberPetEquipment } = 
+    useQuery(["getGuildMemberPetEquipment", ocid && { ocid : ocid }], apiCharacterPetEquipment, {
+        staleTime: 24 * 60 * 60 * 1000,
+        enabled: !!ocid
+    });
+    // console.log(dataGuildMemberPetEquipment);
     // 안드로이드
     const { data:dataGuildMemberAndroid, isLoading:isLoadingGuildMemberAndroid } = 
     useQuery(["getGuildMemberAndroid", ocid && { ocid : ocid }], apiCharacterAndroid, {
@@ -209,6 +217,7 @@ export default function CharacterDetail() {
                     </div>
                     {/* 장비창 */}
                     <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
+                    <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
                 </div>
                 {/* 임시 div */}
                 <div className="w-full h-20"></div>
