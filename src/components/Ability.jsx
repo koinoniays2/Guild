@@ -7,7 +7,7 @@ export default function Ability({ability}) {
     const [preset, setPreset] = useState();
     console.log(ability);
     return (
-        <section className="w-80 flex flex-col items-start p-2 space-y-2 rounded-lg bg-[#2C2F32]">
+        <div className="w-full flex flex-col text-sm p-2 space-y-2 rounded-lg bg-[#2C2F32]">
             {presetTrue ? (
             <>
             {preset === 1 && <AbilityPreset ability={ability?.ability_preset_1} />} 
@@ -19,6 +19,6 @@ export default function Ability({ability}) {
             ) : (
                 <AbilityPreset ability={ability && ability} />
             )}
-        </section> 
+        </div> 
     );
 }

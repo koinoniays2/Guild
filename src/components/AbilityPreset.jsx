@@ -12,8 +12,8 @@ export default function AbilityPreset({ability}) {
     }
     return (
         <>
-        <p className="text-[12px] text-[#d4f403] uppercase">ability</p>
-        <div className="w-full p-1 text-[12px] text-white-color rounded-lg bg-white-color space-y-1">
+        <p className="text-[#d4f403] uppercase">ability</p>
+        <div className="w-full p-1 text-white-color rounded-lg bg-white-color space-y-1">
             <p className={`w-full flex items-center justify-start p-2 py-1.5 ${getTextColor(ability?.ability_preset_grade || ability?.ability_grade)} rounded-lg`}>
                 <FaBookmark className="mr-2" />{ability?.ability_preset_grade && ability?.ability_preset_grade}{ability?.ability_grade && ability?.ability_grade} 어빌리티</p>
             {ability.ability_info?.map((item, index) => (
