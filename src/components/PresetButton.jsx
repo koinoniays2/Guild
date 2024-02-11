@@ -7,7 +7,7 @@ export default function PresetButton({presetKinds, preset, setPreset}) {
         setPreset(presetNo);
     }, [presetNo]);
     return (
-        <div className="w-full flex items-center justify-between px-2 text-sm text-white-color bg-gray-300 rounded-2xl">
+        <div className="w-full flex items-center justify-between px-3 text-[12px] font-bold text-white-color bg-gray-300 rounded-2xl">
             <p className="uppercase">preset</p>
             <div className="flex justify-center items-center space-x-2 py-1">
             {

@@ -120,6 +120,19 @@ export async function apiCharacterAbility({queryKey}) {
         },
     }).then((res) => res.json());
 }
+// 하이퍼스탯
+export async function apiCharacterHyperStat({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/hyper-stat?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
 
 // 이메일
 export async function apiPostGoogleMail(data) {

@@ -5,9 +5,9 @@ import PresetButton from './PresetButton';
 export default function Ability({ability}) {
     const presetTrue = (ability?.ability_preset_1 || ability?.ability_preset_2 || ability?.ability_preset_3);
     const [preset, setPreset] = useState();
-    console.log(ability);
+    // console.log(ability);
     return (
-        <div className="w-full flex flex-col text-sm p-2 space-y-2 rounded-lg bg-[#2C2F32]">
+        <div className="w-full flex flex-col text-[12px] p-2 space-y-2 rounded-lg bg-[#2C2F32]">
             {presetTrue ? (
             <>
             {preset === 1 && <AbilityPreset ability={ability?.ability_preset_1} />} 

@@ -11,7 +11,7 @@ export default function Equipment({equipment, android}) {
     // console.log(equipment);
     
     return (
-        <section className="w-fit flex flex-col items-center justify-center space-y-5">
+        <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-2 rounded-lg bg-gray-100">
             {presetTrue ? (
             <>
             {preset === 1 && <Preset preset={preset1} android={android} />}

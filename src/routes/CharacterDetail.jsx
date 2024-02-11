@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
-import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterUnion } from '../js/api';
+import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
 import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
@@ -66,6 +66,13 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberAbility);
+    // 어빌
+    const { data:dataGuildMemberHyperStat, isLoading:isLoadingGuildMemberHyperStat } = 
+    useQuery(["getGuildMemberHyperStat", ocid && { ocid : ocid }], apiCharacterHyperStat, {
+        staleTime: 24 * 60 * 60 * 1000,
+        enabled: !!ocid
+    });
+    console.log(dataGuildMemberHyperStat);
 
     return (
         <>
@@ -200,9 +207,7 @@ export default function CharacterDetail() {
                 </div>
                 }
                 {/* 장비창 */}
-                <div>
-                    <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
-                </div>
+                <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                 {/* 임시 div */}
                 <div className="w-full h-20"></div>
             </div>
