@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 export default function PresetButton({presetKinds, preset, setPreset}) {
-    const presetNo = presetKinds?.preset_no;
+    const presetNo = presetKinds?.preset_no || parseInt(presetKinds?.use_preset_no);
     const dummyArray = Array.from({ length: 3 });
     useEffect(() => {
         setPreset(presetNo);

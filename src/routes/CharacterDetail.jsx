@@ -11,6 +11,7 @@ import TopButton from '../components/TopButton';
 import MailButton from '../components/MailButton';
 import Footer from '../components/Footer';
 import Ability from '../components/Ability';
+import HyperStat from '../components/HyperStat';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -66,13 +67,13 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberAbility);
-    // 어빌
+    // 하이퍼
     const { data:dataGuildMemberHyperStat, isLoading:isLoadingGuildMemberHyperStat } = 
     useQuery(["getGuildMemberHyperStat", ocid && { ocid : ocid }], apiCharacterHyperStat, {
         staleTime: 24 * 60 * 60 * 1000,
         enabled: !!ocid
     });
-    console.log(dataGuildMemberHyperStat);
+    // console.log(dataGuildMemberHyperStat);
 
     return (
         <>
@@ -111,103 +112,104 @@ export default function CharacterDetail() {
                         </div>
                     </div>
                 </div>
-                {/* 스텟, 하이퍼 wrap */}
-                <div className="w-full flex flex-wrap justify-center items-start">
-                    {/* 스텟 */}
-                    <div className="w-full max-w-80 flex flex-col justify-center items-center space-y-1">
-                        {/* 전투력 */}
-                        <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
-                            <span>{characterStat[42]?.stat_name}</span>
-                            <span>{formatNumber(characterStat[42]?.stat_value)}</span>
+                {/* (스텟,어빌,하이퍼)wrap(장비창) */}
+                <div className="w-full flex flex-col items-center justify-center space-y-2 md:flex-row md:space-x-5 md:items-start md:space-y-0">
+                    {/* 스텟, 어빌, 하이퍼*/}
+                    <div className="w-fit flex flex-col space-y-2 justify-center items-center ">
+                        {/* 스텟 */}
+                        <div className="w-full min-w-80 flex flex-col justify-center items-center space-y-1">
+                            {/* 전투력 */}
+                            <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
+                                <span>{characterStat[42]?.stat_name}</span>
+                                <span>{formatNumber(characterStat[42]?.stat_value)}</span>
+                            </div>
+                            {/* 능력치 */}
+                            <div className="w-full flex text-[12px] text-white-color bg-[#86939F] rounded-md">
+                                <StatLayoutLayout>
+                                {["HP", "STR", "INT"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                                <StatLayoutLayout>
+                                {["MP", "DEX", "LUK"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                            </div>
+                            {/* 능력치 2 */}
+                            <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
+                                <StatLayoutLayout>
+                                {["최대 스탯공격력", "최종 데미지", "방어율 무시", "공격력", "마력", "재사용 대기시간 감소 (초)", "재사용 대기시간 미적용", "상태이상 추가 데미지"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    slot === "재사용 대기시간 감소 (초)" ? <StatLayout key={item.stat_name} coolTime={characterStat[34].stat_value}>{item}</StatLayout> :
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                                <StatLayoutLayout>
+                                {["데미지", "보스 몬스터 데미지", "일반 몬스터 데미지", "크리티컬 확률", "크리티컬 데미지", "버프 지속시간", "속성 내성 무시", "소환수 지속시간 증가"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                            </div>
+                            {/* 능력치 3 */}
+                            <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
+                                <StatLayoutLayout>
+                                {["메소 획득량", "아이템 드롭률", "추가 경험치 획득"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                                <StatLayoutLayout>
+                                {["스타포스", "아케인포스", "어센틱포스"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                            </div>
+                            {/* 능력치 4 */}
+                            <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
+                                <StatLayoutLayout>
+                                {["방어력", "이동속도", "스탠스"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                                <StatLayoutLayout>
+                                {["상태이상 내성", "점프력", "공격 속도"].map((slot) => {
+                                const item = characterStat.find((item) => item.stat_name === slot);
+                                return item ? (
+                                    <StatLayout key={item.stat_name}>{item}</StatLayout>
+                                ) : null;
+                                })}
+                                </StatLayoutLayout>
+                            </div>
                         </div>
-                        {/* 능력치 */}
-                        <div className="w-full flex text-[12px] text-white-color bg-[#86939F] rounded-md">
-                            <StatLayoutLayout>
-                            {["HP", "STR", "INT"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                            <StatLayoutLayout>
-                            {["MP", "DEX", "LUK"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                        </div>
-                        {/* 능력치 2 */}
-                        <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
-                            <StatLayoutLayout>
-                            {["최대 스탯공격력", "최종 데미지", "방어율 무시", "공격력", "마력", "재사용 대기시간 감소 (초)", "재사용 대기시간 미적용", "상태이상 추가 데미지"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                slot === "재사용 대기시간 감소 (초)" ? <StatLayout key={item.stat_name} coolTime={characterStat[34].stat_value}>{item}</StatLayout> :
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                            <StatLayoutLayout>
-                            {["데미지", "보스 몬스터 데미지", "일반 몬스터 데미지", "크리티컬 확률", "크리티컬 데미지", "버프 지속시간", "속성 내성 무시", "소환수 지속시간 증가"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                        </div>
-                        {/* 능력치 3 */}
-                        <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
-                            <StatLayoutLayout>
-                            {["메소 획득량", "아이템 드롭률", "추가 경험치 획득"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                            <StatLayoutLayout>
-                            {["스타포스", "아케인포스", "어센틱포스"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                        </div>
-                        {/* 능력치 4 */}
-                        <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
-                            <StatLayoutLayout>
-                            {["방어력", "이동속도", "스탠스"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
-                            <StatLayoutLayout>
-                            {["상태이상 내성", "점프력", "공격 속도"].map((slot) => {
-                            const item = characterStat.find((item) => item.stat_name === slot);
-                            return item ? (
-                                <StatLayout key={item.stat_name}>{item}</StatLayout>
-                            ) : null;
-                            })}
-                            </StatLayoutLayout>
+                        {/* 어빌, 하이퍼 */}
+                        <div className="w-full max-w-80 flex flex-col items-center justify-center space-y-2">
+                            {dataGuildMemberAbility && ( <Ability ability={dataGuildMemberAbility} /> )}
+                            {dataGuildMemberHyperStat && ( <HyperStat hyper={dataGuildMemberHyperStat} />)}
                         </div>
                     </div>
+                    {/* 장비창 */}
+                    <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                 </div>
-                {/* 어빌 */}
-                {dataGuildMemberAbility &&
-                <div className="w-full max-w-80">
-                    {/* 어빌 */}
-                    <Ability ability={dataGuildMemberAbility} />
-                </div>
-                }
-                {/* 장비창 */}
-                <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                 {/* 임시 div */}
                 <div className="w-full h-20"></div>
             </div>

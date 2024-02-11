@@ -18,7 +18,7 @@ export default function EquipmentSlot({equipment, android}) {
     const additionalGrad = equipment?.additional_potential_option_grade;
     
     return (
-        <div className={`relative w-10 h-10 bg-gray-200
+        <div className={`relative w-10 h-10 bg-gray-400
         ${getBorderStyle(potentialGrad, additionalGrad)}`} 
         // 마우스 호버시 장비아이템, 안드로이드가 있을경우에만 호버상태 true
         onMouseEnter={() => {setEquipmentOpen(equipment?.item_equipment_slot || android?.android_name);}} 
