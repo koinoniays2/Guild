@@ -1,7 +1,7 @@
 import React from 'react'
 import EquipmentSlot from './EquipmentSlot';
 
-export default function Preset({ preset, android }) {
+export default function EquipmentPreset({ preset, android }) {
     return (
         <section className="w-full flex justify-center items-center space-x-1 p-base">
                 {/* 반지1, 반지2, 반지3, 반지4, 포켓 아이템 */}

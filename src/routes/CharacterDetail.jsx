@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
-import { apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterUnion } from '../js/api';
+import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
 import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
@@ -10,6 +10,7 @@ import Equipment from '../components/Equipment';
 import TopButton from '../components/TopButton';
 import MailButton from '../components/MailButton';
 import Footer from '../components/Footer';
+import Ability from '../components/Ability';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -58,15 +59,22 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberAndroid);
+    // 어빌
+    const { data:dataGuildMemberAbility, isLoading:isLoadingGuildMemberAbility } = 
+    useQuery(["getGuildMemberAbility", ocid && { ocid : ocid }], apiCharacterAbility, {
+        staleTime: 24 * 60 * 60 * 1000,
+        enabled: !!ocid
+    });
+    // console.log(dataGuildMemberAbility);
 
     return (
         <>
         <Top logoImg="/logo.png" />
-        <section className="relative w-full overflow-hidden flex flex-col justify-center py-5 items-center space-y-4">
+        <section className="relative w-full overflow-hidden flex flex-col justify-center py-5 items-center">
             {/* 배경 div */}
             <div className="absolute w-full h-full top-0 left-0 bg-blue-50 -z-10"></div>
             {/* 캐릭창 */}
-            <div className="w-full max-w-5xl p-base flex justify-center items-end space-x-1">
+            <div className="w-full max-w-5xl p-base flex justify-center items-end space-x-1 pb-5">
                 {/* 캐릭정보 */}
                 <div className="relative w-48 h-44 flex flex-col flex-shrink-0 justify-end items-center p-base space-y-2">
                     {/* 백그라운드 이미지 */}
@@ -93,12 +101,12 @@ export default function CharacterDetail() {
                     </div>
                 </div>
             </div>
-            {/* 스텟, 장비창 wrap */}
-            <div className="w-full max-w-5xl flex flex-wrap justify-center items-center space-x-5">
-                {/* 스텟정보창 */}
-                <div className="w-full max-w-80 flex flex-col justify-center items-center space-y-1">
+            {/* 스텟, 어빌, 하이퍼 wrap */}
+            <div className="w-full max-w-5xl flex flex-wrap justify-center items-start">
+                {/* 스텟 */}
+                <div className="w-full max-w-80 flex flex-col justify-center items-center space-y-1 pb-5">
                     {/* 전투력 */}
-                    <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
+                    <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-2 rounded-md">
                         <span>{characterStat[42]?.stat_name}</span>
                         <span>{formatNumber(characterStat[42]?.stat_value)}</span>
                     </div>
@@ -180,7 +188,16 @@ export default function CharacterDetail() {
                         </StatLayoutLayout>
                     </div>
                 </div>
-                {/* 장비창 */}
+                {/* 어빌, 하이퍼 */}
+                {dataGuildMemberAbility &&
+                <div className="w-fit flex flex-col justify-center items-center p-base pb-5">
+                    {/* 어빌 */}
+                    <Ability ability={dataGuildMemberAbility} />
+                </div>
+                }
+            </div>
+            {/* 장비창 */}
+            <div>
                 <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
             </div>
             {/* 임시 div */}

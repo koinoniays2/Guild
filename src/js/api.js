@@ -107,6 +107,20 @@ export async function apiCharacterAndroid({queryKey}) {
     }).then((res) => res.json());
 }
 
+// 어빌
+export async function apiCharacterAbility({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/ability?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
+
 // 이메일
 export async function apiPostGoogleMail(data) {
     try {

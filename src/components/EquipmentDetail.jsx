@@ -56,7 +56,7 @@ export default function EquipmentDetail({ equipment, android }) {
         { key: "equipment_level_decrease", label: "착용 레벨 감소" },
         { key: "base_equipment_level", label: "REQ LEV" }
         ]
-    console.log(equipment);
+    // console.log(equipment);
     // console.log(android);
     // 소울
     const soul = equipment?.soul_name;
@@ -125,12 +125,12 @@ export default function EquipmentDetail({ equipment, android }) {
                             <div key={`total_${index}`} className={`flex text-[11px] text-white-color`}>
                                 {/* 토탈옵과 기본옵이 같으면 토탈만 출력(추가 된 옵션이 없다는 뜻이기 때문에) */}
                                 {totalValue === baseValue ? (
-                                <span>{optionLabel} : {keyPercent ? `${totalValue}%` : totalValue}</span>
+                                <span>{optionLabel} : {keyPercent ? `+${totalValue}%` : `+${totalValue}`}</span>
                             ) : (
                                 <>
                                 {/* 토탈값(기본옵만 있는게 아니면 텍스트컬러 #66FFFF max_hp_rate와 max_mp_rate는 토탈옵에만 있기 때문에 예외 ) */}
                                 <span className={key === "max_hp_rate" || key === "max_mp_rate" ? `` : "text-[#66FFFF]"}>{optionLabel} : 
-                                {keyPercent ? `${totalValue}%` : totalValue}</span>
+                                {keyPercent ? `+${totalValue}%` : `+${totalValue}`}</span>
                                 {/* 여는괄호(추옵, 주문서작, 스타포스중에 하나라도 존재하면 여닫는 괄호 필요)*/}
                                 {addValue || etcValue || starforceValue ? <span>{`(`}</span> : ""}
                                 {/* 기본 추옵(추옵, 주문서작, 스타포스에는 max_hp_rate와 max_mp_rate 옵션이 없음 기본옵에는 0으로 정의되어있고 토탈옵에만 있기때문에 %로 대체 ) */}
