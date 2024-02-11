@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function HyperStatPreset({hyper}) {
-    console.log(hyper);
+    // console.log(hyper);
     return (
         <>
         <p className="text-[#d4f403] uppercase">hyper stat</p>
