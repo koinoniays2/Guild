@@ -146,6 +146,19 @@ export async function apiCharacterHyperStat({queryKey}) {
         },
     }).then((res) => res.json());
 }
+// 심볼
+export async function apiCharacterSymbol({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/symbol-equipment?ocid=${ocid}&date=${getCurrentDate()}`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
 
 // 이메일
 export async function apiPostGoogleMail(data) {

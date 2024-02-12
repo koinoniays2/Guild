@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
-import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterUnion } from '../js/api';
+import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterSymbol, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
 import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import Ability from '../components/Ability';
 import HyperStat from '../components/HyperStat';
 import PetEquipment from '../components/PetEquipment';
+import Symbol from '../components/Symbol';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -82,6 +83,13 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberHyperStat);
+    // 심볼
+    const { data:dataGuildMemberSymbol, isLoading:isLoadingGuildMemberSymbol } = 
+    useQuery(["getGuildMemberSymbol", ocid && { ocid : ocid }], apiCharacterSymbol, {
+        staleTime: 24 * 60 * 60 * 1000,
+        enabled: !!ocid
+    });
+    // console.log(dataGuildMemberSymbol);
 
     return (
         <>
@@ -219,6 +227,7 @@ export default function CharacterDetail() {
                     <div className="w-full max-w-80 space-y-2">
                         <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                         <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
+                        <Symbol symbol={!isLoadingGuildMemberSymbol && dataGuildMemberSymbol} />
                     </div>
                 </div>
                 {/* 임시 div */}

@@ -5,7 +5,7 @@ export default function PetEquipmentDetail({pet}) {
             let pet = petName === petNick ? petName : `${petNick} (${petName})`;
             return pet;
         }
-        console.log(pet);
+        // console.log(pet);
         return (
             <div className={`flex flex-col py-1 items-center space-y-2 text-[12px]`}>
                 {/* 펫 이름, 펫 장비이름(업횟이 존재하지 않으면 흰색) */}
