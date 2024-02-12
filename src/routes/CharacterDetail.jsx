@@ -215,12 +215,14 @@ export default function CharacterDetail() {
                             {dataGuildMemberHyperStat && ( <HyperStat hyper={dataGuildMemberHyperStat} />)}
                         </div>
                     </div>
-                    {/* 장비창 */}
-                    <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
-                    <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
+                    {/* 장비창, 펫장비 */}
+                    <div className="w-full max-w-80 space-y-2">
+                        <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
+                        <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
+                    </div>
                 </div>
                 {/* 임시 div */}
-                <div className="w-full h-20"></div>
+                <div className="w-full h-6"></div>
             </div>
         </section>
         <Footer logoImg="/logo.png" logoCreator="하풍다풍" />
