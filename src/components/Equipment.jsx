@@ -14,7 +14,7 @@ export default function Equipment({equipment, android}) {
         <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-2 rounded-lg bg-gray-200">
             <div className="text-black-color uppercase font-bold w-full text-left">
                 <p>equiment</p>
-                <p className="text-gray-400 text-[12px]">장비 프리셋이 설정되지 않았을 경우,<br />모든 프리셋은 1번 프리셋으로 반영됩니다.</p>
+                <p className="text-gray-400 text-[12px]">장비 프리셋이 설정되지 않았을 경우,<br /> 1번 프리셋으로 반영됩니다.</p>
             </div>
             {presetTrue ? (
             <>
