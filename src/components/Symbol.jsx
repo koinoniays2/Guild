@@ -29,9 +29,9 @@ export default function Symbol({symbol}) {
     if (symbol?.symbol?.length !== 0) {
         authenticSymbols = (symbol?.symbol)?.filter(item => item.symbol_name.includes("어센틱심볼"));
     }
-    console.log(authenticSymbols);
+    // console.log(authenticSymbols);
     // 어센틱심볼 총 포스, 주스텟
-    let authenticForce = 0;
+    let authenticForce = 0; 
     let authenticHP = 0;
     let authenticSTR = 0;
     let authenticDEX = 0;
