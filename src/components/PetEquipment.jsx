@@ -25,7 +25,7 @@ export default function PetEquipment({pet}) {
         pet && (
         <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-2 rounded-lg bg-gray-200">
             <p className="w-full text-black-color uppercase font-bold text-left">pet</p>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-col justify-between items-center space-y-2">
                 <div className="flex space-x-1">
                     <EquipmentSlot petIcon={pet.pet_1_icon || ""} pet={pet1} />
                     <EquipmentSlot petIcon={pet.pet_1_equipment?.item_icon || ""} pet={pet1.pet_1_equipment}/>

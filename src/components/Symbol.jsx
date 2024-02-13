@@ -39,7 +39,7 @@ const SymbolBox = ({symbolarr, color1, color2, btnOn}) => {
             <div className="w-full flex flex-wrap">
                 {symbolarr?.map((item, index) => (
                 <div key={index} className="w-1/3 flex items-center justify-center pb-3">
-                    <div className="w-20 flex flex-col items-center justify-center p-2 border border-[#f8e5a5] rounded-lg shadow-md">
+                    <div className="w-20 flex flex-col items-center justify-center p-1 border border-[#f8e5a5] rounded-lg shadow-md">
                         <img src={item.symbol_icon} alt={item.symbol_name}/>
                         <p>Lv.{item.symbol_level}</p>
                         <p>{btnOn === "arcane" ? `ARC` : `AUT`}: +{item.symbol_force}</p>

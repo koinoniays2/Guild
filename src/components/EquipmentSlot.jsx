@@ -29,7 +29,7 @@ export default function EquipmentSlot({equipment, android, petIcon, pet}) {
             alt={equipment?.item_icon || android?.android_icon || petIcon || ""}/>
             {equipmentOpen &&
             //  pointerEvents: "none" : 장비 디테일 호버창은 영향 받지않게 하기(뒤에 가려진 장비 요소들에 바로 호버 가능)
-            <section className="w-44 px-1 pb-1 bg-black/70 absolute -top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10"style={{ pointerEvents: "none" }}>
+            <section className="w-[182px] p-1 pb-1.5 bg-black/70 absolute -top-1/2 -translate-y-1/2 left-[45%] -translate-x-[45%] z-10"style={{ pointerEvents: "none" }}>
                 {
                 (equipment?.item_equipment_slot || android?.android_name) && <EquipmentDetail equipment={equipment} android={android} />
                 }

@@ -7,9 +7,9 @@ export default function PetEquipmentDetail({pet}) {
         }
         // console.log(pet);
         return (
-            <div className={`flex flex-col py-1 items-center space-y-2 text-[12px]`}>
+            <div className={`flex flex-col space-y-2 text-[12px]`}>
                 {/* 펫 이름, 펫 장비이름(업횟이 존재하지 않으면 흰색) */}
-                <p className={`${pet?.scroll_upgrade ? 'text-[#ffaa00]' : 'text-white-color'}`}>
+                <p className={`${pet?.scroll_upgrade ? 'text-[#ffaa00]' : 'text-white-color'} w-full text-center`}>
                 {petName(pet?.pet_1_name, pet?.pet_1_nickname) || petName(pet?.pet_2_name, pet?.pet_2_nickname) || petName(pet?.pet_3_name, pet?.pet_3_nickname)
                 || (pet?.scroll_upgrade !==0 ? `${pet?.item_name}(+${pet?.scroll_upgrade})` : pet?.item_name) || ""}</p>
                 {/* 펫 아이콘, 펫장비 아이콘 */}
