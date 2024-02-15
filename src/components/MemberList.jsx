@@ -66,7 +66,7 @@ export default function MemberList({ guildMember, onItemClick }) {
                 {guildMember?.map((item, index) => (
                         firstNum <= index && index <= lastNum && (
                             <p onClick={() => handleItemClick(item)}
-                            className="w-1/3 md:w-1/4 lg:w-1/5 mt-2 text-center text-sm cursor-pointer hover:scale-110 duration-300" key={index}>{item}</p>
+                            className="w-1/3 sm:w-1/4 lg:w-1/5 mt-5 text-center text-sm sm:text-[1rem] cursor-pointer hover:scale-110 duration-300" key={index}>{item}</p>
                         )
                     ))}
             </div>

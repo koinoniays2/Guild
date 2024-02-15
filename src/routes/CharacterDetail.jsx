@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
 import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterSymbol, apiCharacterUnion } from '../js/api';
@@ -24,6 +24,11 @@ export default function CharacterDetail() {
     const characterStat = location?.state.characterStat;
     // console.log("캐릭정보", characterData);
     // console.log(characterStat);
+    
+    // 페이지 로드 시 스크롤을 맨 위로 이동
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     // 유니온
     const { data:dataGuildMemberUnion, isLoading:isLoadingGuildMemberUnion } = 
