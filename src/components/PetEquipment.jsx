@@ -23,7 +23,7 @@ export default function PetEquipment({pet}) {
     // console.log(pet);
     return (
         pet && (
-        <section className="relative w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-2 rounded-lg bg-gray-200">
+        <section className="relative w-full max-w-80 flex flex-col items-center justify-center space-y-5 py-3 p-base rounded-lg bg-gray-200">
             <p className="w-full text-black-color uppercase font-bold text-left">pet</p>
             <div className="w-full flex items-center justify-center space-x-2.5">
                 <div className="flex flex-col space-y-1">

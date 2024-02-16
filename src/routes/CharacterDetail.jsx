@@ -15,6 +15,7 @@ import HyperStat from '../components/HyperStat';
 import PetEquipment from '../components/PetEquipment';
 import Symbol from '../components/Symbol';
 import SkillGrade5 from '../components/SkillGrade5';
+import Title from '../components/Title';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -59,6 +60,11 @@ export default function CharacterDetail() {
         staleTime: 24 * 60 * 60 * 1000,
         enabled: !!ocid
     });
+    // 칭호
+    let title;
+    if(!isLoadingGuildMemberEquipment) title = dataGuildMemberEquipment?.title;
+    console.log(title);
+    // console.log(dataGuildMemberEquipment);
     // console.log(dataGuildMemberEquipment.item_equipment_preset1);
     // console.log(dataGuildMemberEquipment.item_equipment_preset_1);
     // 펫
@@ -239,6 +245,7 @@ export default function CharacterDetail() {
                     </div>
                     {/* 장비창, 펫장비, 심볼 */}
                     <div className="w-full max-w-80 space-y-2">
+                        {title && <Title title={title} />}
                         <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                         <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
                         <Symbol symbol={!isLoadingGuildMemberSymbol && dataGuildMemberSymbol} />
