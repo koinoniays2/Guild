@@ -248,7 +248,7 @@ export default function CharacterDetail() {
                     </div>
                 </div>
                 {/* 임시 div */}
-                <div className="w-full h-6"></div>
+                <div className="w-full h-36"></div>
             </div>
         </section>
         <Footer logoImg="/logo.png" logoCreator="하풍다풍" />

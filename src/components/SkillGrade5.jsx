@@ -1,12 +1,12 @@
 import SkillSlot from "./SkillSlot";
 
 const FourRow = ({children}) => (
-    <div className="flex w-full justify-center items-center space-x-3.5">
+    <div className="flex w-full justify-center items-center space-x-3.5 pb-1">
         {children}
     </div>
 )
 const ThreeRow = ({children}) => (
-    <div className="flex w-full justify-center items-center space-x-4">
+    <div className="flex w-full justify-center items-center space-x-4 pt-1">
         {children}
     </div>
 )

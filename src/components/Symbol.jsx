@@ -89,17 +89,18 @@ export default function Symbol({symbol}) {
                 onClick={() => setBtnOn("authentic")}>authentic</button>
             </div>
             {/* 아케인심볼 화면 */}
-            {btnOn === "arcane" &&
+            {btnOn === "arcane" && (
             // 아케인심볼이 존재하면
-            arcaneSymbols?.length !== 0 &&
+            arcaneSymbols?.length !== 0 ?
             <SymbolBox symbolarr={arcaneSymbols} color1={arcaneColor1} color2={arcaneColor2} btnOn={btnOn}/>
-            }
+            : <p className="text-sm">장착된 아케인심볼이 없습니다.</p>
+            )}
             {/* 어센틱심볼 화면 */}
-            {btnOn === "authentic" &&
+            {btnOn === "authentic" && (
             // 어센틱심볼이 존재하면
-            authenticSymbols.length !== 0 &&
+            authenticSymbols.length !== 0 ? 
             <SymbolBox symbolarr={authenticSymbols} color1={authenticColor1} color2={authenticColor2} btnOn={btnOn}/>
-            }
+            : <p className="text-sm">장착된 어센틱심볼이 없습니다.</p> )}
         </section>
     )
 }

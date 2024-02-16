@@ -49,8 +49,8 @@ export default function EquipmentDetail({ equipment, android }) {
         { key: "armor", label: "방어력" },
         { key: "jump", label: "점프력" },
         { key: "speed", label: "이동속도" },
-        { key: "boss_damage", label: "보스 데미지" },
-        { key: "ignore_monster_armor", label: "방어율 무시" },
+        { key: "boss_damage", label: "보스 몬스터 공격 시 데미지" },
+        { key: "ignore_monster_armor", label: "몬스터 방어율 무시" },
         { key: "damage", label: "데미지" },
         { key: "all_stat", label: "올스탯" },
         { key: "equipment_level_decrease", label: "착용 레벨 감소" },
@@ -63,21 +63,20 @@ export default function EquipmentDetail({ equipment, android }) {
     const soulSplit = soul?.split("의");
     // 업횟
     const upgradeCount = equipment?.scroll_upgrade;
-
     return (
-        <div className="flex flex-col justify-center items-center space-y-1">
+        <div className="flex flex-col justify-center items-center">
             {/* 스타포스 */}
-            <div className="flex flex-wrap justify-center items-center px-5">
-                {
-                equipment?.starforce &&
-                [...Array(parseInt(equipment?.starforce))].map((_, index) => (
-                <div key={index} className={`${(index + 1) % 5 === 0 && "mr-1"} mt-2`} >
-                    <FaStar size="8" color={`${equipment?.starforce_scroll_flag === "미사용" ? `yellow` : `#66FFFF`}`} />
-                </div>
+            {equipment?.starforce && parseInt(equipment?.starforce) !== 0 && (
+            <div className="flex flex-wrap justify-center items-center px-9">
+                {[...Array(parseInt(equipment?.starforce))]?.map((_, index) => (
+                    <div key={index} className={`${(index + 1) % 5 === 0 && "mr-1"} mb-2`} >
+                        <FaStar size="8" color={`${equipment?.starforce_scroll_flag === "미사용" ? "yellow" : "#66FFFF"}`} />
+                    </div>
                 ))}
             </div>
+            )}
             {/* 템, 안드로이드 이름 */}
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-2">
                 {soul ? 
                 <p className="text-sm text-[#CCFF00] text-center">{soulSplit[0]}의</p> : "" }
                 <p className={`text-sm ${upgradeCount !== "0" && !android ? "text-[#FF0066]" : "text-white-color" } text-center`}>
@@ -86,7 +85,7 @@ export default function EquipmentDetail({ equipment, android }) {
                 <p className="text-white-color text-center text-[12px]">{getGrad(equipment?.potential_option_grade, equipment?.additional_potential_option_grade)}</p>
             </div>
             {/* 모루 이미지 */}
-            <div className="w-full flex justify-start items-end space-x-2">
+            <div className="w-full flex justify-start items-end space-x-2 mb-2">
                 {
                 <img className={`w-10 h-10 object-contain p-1
                 ${getBorderStyle(equipment?.potential_option_grade, equipment?.additional_potential_option_grade)}`} 
@@ -157,7 +156,7 @@ export default function EquipmentDetail({ equipment, android }) {
             {/* 장비 잠재 */}
             {/* 윗잠 */}
             {equipment?.potential_option_grade ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <div className="flex items-center space-x-1">
                     <div className={LUER}
                     style={{clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
@@ -175,7 +174,7 @@ export default function EquipmentDetail({ equipment, android }) {
             ) : ""}
             {/* 아랫잠 */}
             {equipment?.additional_potential_option_grade ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <div className="flex items-center space-x-1">
                     <div className={LUER}
                     style={{clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
@@ -193,27 +192,27 @@ export default function EquipmentDetail({ equipment, android }) {
             ): ""}
             {/* 설명 */}
             {equipment?.item_description ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <p className="text-[11px] text-white-color">{equipment?.item_description}</p>
                 {equipment.special_ring_level ?
                 <p className="text-[11px] text-[#ffaa00]">{`[특수 스킬 반지] ${equipment?.item_name} ${equipment?.special_ring_level}레벨`}</p>: ""}
             </div>
             ) : "" }
             {android?.android_description ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <p className="text-[11px] text-white-color">{android.android_description}</p>
             </div>
             ): "" }
             {/* 소울 */}
             {equipment?.soul_name ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <p className="text-[11px] text-[#ffff44]">{equipment?.soul_name}</p>
                 <p className="text-[11px] text-white-color">{equipment?.soul_option}</p>
             </div>
             ): "" }
             {/* 모루 */}
             {equipment?.item_shape_name && (equipment?.item_name !== equipment?.item_shape_name) ? (
-            <div className={POTENTIAL}>
+            <div className={`${POTENTIAL} mt-2`}>
                 <p className="text-[11px] text-[#ccff00]">{`신비의 모루에 의해 [${equipment?.item_shape_name}]의 외형이 합성됨`}</p>
             </div>
             ) : "" }

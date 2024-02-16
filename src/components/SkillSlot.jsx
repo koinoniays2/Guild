@@ -12,7 +12,7 @@ export default function SkillSlot({skill}) {
           <img className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" src={skill?.skill_icon} alt={skill?.skill_name}/>    
       </div>
       {skillDetail && (
-      <section className="w-72 p-2 bg-black/70 absolute top-1/2 -translate-y-1/2 left-0 translate-x-0.5 z-10"style={{ pointerEvents: "none" }}>
+      <section className="w-72 p-2 bg-black/70 absolute left-0 translate-x-0.5 z-10"style={{ pointerEvents: "none" }}>
         <SkillGrade5Detail skill={skill} />
       </section>
           )}
