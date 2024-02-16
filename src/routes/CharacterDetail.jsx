@@ -143,7 +143,7 @@ export default function CharacterDetail() {
                     </div>
                 </div>
                 {/* (스텟,어빌,하이퍼)wrap(장비창) */}
-                <div className="w-full flex flex-col items-center justify-center space-y-2 md:flex-row md:space-x-5 md:items-start md:space-y-0">
+                <div className="w-full flex flex-col items-center justify-center space-y-2 lg:flex-row lg:space-x-5 lg:items-start lg:space-y-0">
                     {/* 스텟, 어빌, 하이퍼*/}
                     <div className="w-fit flex flex-col space-y-2 justify-center items-center ">
                         {/* 스텟 */}

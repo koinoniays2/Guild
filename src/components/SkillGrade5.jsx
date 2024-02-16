@@ -1,45 +1,38 @@
 import SkillSlot from "./SkillSlot";
 
 const FourRow = ({children}) => (
-    <div className="flex w-full flex-wrap justify-center items-center space-x-3">
+    <div className="flex w-full justify-center items-center space-x-3.5">
         {children}
     </div>
 )
 const ThreeRow = ({children}) => (
-    <div className="flex flex-wrap w-full justify-center items-center space-x-4">
+    <div className="flex w-full justify-center items-center space-x-4">
         {children}
     </div>
 )
 export default function Skill({skill}) {
-    console.log(skill);
-  return (
-    <section className="bg-[#1f354d80] w-full max-w-80 p-3 space-y-2 rounded-lg">
-        <p className="text-white-color font-bold">V 매트릭스</p>
-        <FourRow>
-            <SkillSlot />
-            <SkillSlot />
-            <SkillSlot />
-            <SkillSlot />
-        </FourRow>
-        <ThreeRow>
-            <SkillSlot />
-            <SkillSlot />
-            <SkillSlot />
-        </ThreeRow>
-        <FourRow>
-            <SkillSlot />
-            <SkillSlot />
-            <SkillSlot />
-            <SkillSlot />
-        </FourRow>
-    </section>
-  )
+    const rows = [];
+    for (let i = 0; i < skill?.length; i += 7) {
+        const chunkedSkills = skill.slice(i, i + 7);
+        rows.push(
+            <div key={i}>
+                <FourRow>
+                    {chunkedSkills.slice(0, 4).map((skill, index) => (
+                        <SkillSlot key={index} skill={skill} />
+                    ))}
+                </FourRow>
+                <ThreeRow>
+                    {chunkedSkills.slice(4, 7).map((skill, index) => (
+                        <SkillSlot key={index} skill={skill} />
+                    ))}
+                </ThreeRow>
+            </div>
+        );
+    }
+    return (
+        <section className="relative bg-[#1f354d90] w-full max-w-80 p-3 space-y-2 rounded-lg">
+            <p className="text-white-color font-bold">V 매트릭스</p>
+            {rows}
+        </section>
+    );
 }
-
-{/* <div className="flex flex-wrap w-full justify-center items-center">
-    {skill?.map((item, index) => (
-        (index) % 7 === 4 ?
-            <SkillSlot key={index} style={marginLeft} skill={item} /> :
-            <SkillSlot key={index} skill={item} />
-        ))}
-</div> */}
