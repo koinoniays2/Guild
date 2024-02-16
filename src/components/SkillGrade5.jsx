@@ -30,7 +30,7 @@ export default function Skill({skill}) {
         );
     }
     return (
-        <section className="relative bg-[#1f354d90] w-full max-w-80 p-3 space-y-2 rounded-lg">
+        <section className="relative bg-[#1f354d] w-full max-w-80 p-3 space-y-2 rounded-lg">
             <p className="text-white-color font-bold">V 매트릭스</p>
             {rows}
         </section>
