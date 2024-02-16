@@ -159,6 +159,19 @@ export async function apiCharacterSymbol({queryKey}) {
         },
     }).then((res) => res.json());
 }
+// 스킬
+export async function apiCharacterSkill({queryKey}) {
+    const ocid = queryKey[1]?.ocid;
+    if (!ocid) {
+        throw new Error("ocid is undefined");
+    }
+    return await fetch(`https://open.api.nexon.com/maplestory/v1/character/skill?ocid=${ocid}&date=${getCurrentDate()}&character_skill_grade=5`, {
+        method: "GET",
+        headers:{
+            "x-nxopen-api-key": API_KEY
+        },
+    }).then((res) => res.json());
+}
 
 // 이메일
 export async function apiPostGoogleMail(data) {

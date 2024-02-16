@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
-import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterSymbol, apiCharacterUnion } from '../js/api';
+import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterSkill, apiCharacterSymbol, apiCharacterUnion } from '../js/api';
 import { useQuery } from 'react-query';
 import { formatNumber } from '../lib/functions';
 import StatLayout from '../components/StatLayout';
@@ -14,6 +14,7 @@ import Ability from '../components/Ability';
 import HyperStat from '../components/HyperStat';
 import PetEquipment from '../components/PetEquipment';
 import Symbol from '../components/Symbol';
+import SkillGrade5 from '../components/SkillGrade5';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -95,6 +96,14 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberSymbol);
+    // 스킬
+    const { data:dataGuildMemberSkill, isLoading:isLoadingGuildMemberSkill } = 
+    useQuery(["getGuildMemberSkill", ocid && { ocid : ocid }], apiCharacterSkill, {
+        staleTime: 24 * 60 * 60 * 1000,
+        enabled: !!ocid
+    });
+    let grade5skill;
+    if(!isLoadingGuildMemberSkill) grade5skill = dataGuildMemberSkill?.character_skill;
 
     return (
         <>
@@ -228,11 +237,14 @@ export default function CharacterDetail() {
                             {dataGuildMemberHyperStat && ( <HyperStat hyper={dataGuildMemberHyperStat} />)}
                         </div>
                     </div>
-                    {/* 장비창, 펫장비 */}
+                    {/* 장비창, 펫장비, 심볼 */}
                     <div className="w-full max-w-80 space-y-2">
                         <Equipment equipment={!isLoadingGuildMemberEquipment && dataGuildMemberEquipment } android={dataGuildMemberAndroid && dataGuildMemberAndroid} />
                         <PetEquipment pet={!isLoadingGuildMemberPetEquipment && dataGuildMemberPetEquipment} />
                         <Symbol symbol={!isLoadingGuildMemberSymbol && dataGuildMemberSymbol} />
+                    </div>
+                    <div className="w-full max-w-80 space-y-2">
+                        <SkillGrade5 skill={grade5skill} />
                     </div>
                 </div>
                 {/* 임시 div */}
