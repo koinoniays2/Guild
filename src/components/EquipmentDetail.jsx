@@ -67,7 +67,7 @@ export default function EquipmentDetail({ equipment, android }) {
         <div className="flex flex-col justify-center items-center">
             {/* 스타포스 */}
             {equipment?.starforce && parseInt(equipment?.starforce) !== 0 && (
-            <div className="flex flex-wrap justify-center items-center px-9">
+            <div className="flex flex-wrap justify-center items-center px-11">
                 {[...Array(parseInt(equipment?.starforce))]?.map((_, index) => (
                     <div key={index} className={`${(index + 1) % 5 === 0 && "mr-1"} mb-2`} >
                         <FaStar size="8" color={`${equipment?.starforce_scroll_flag === "미사용" ? "yellow" : "#66FFFF"}`} />

@@ -31,7 +31,7 @@ export default function EquipmentSlot({equipment, android, petIcon, pet, autoSki
         </div>
         {equipmentOpen &&
         //  pointerEvents: "none" : 장비 디테일 호버창은 영향 받지않게 하기(뒤에 가려진 장비 요소들에 바로 호버 가능)
-        <section className="w-56 p-2 bg-black/70 absolute left-[40%] -translate-x-[40%] z-10"style={{ pointerEvents: "none" }}>
+        <section className="w-[240px] p-2 bg-black/70 absolute left-[40%] -translate-x-[40%] z-10"style={{ pointerEvents: "none" }}>
             {
             (equipment?.item_equipment_slot || android?.android_name) && <EquipmentDetail equipment={equipment} android={android} />
             }
