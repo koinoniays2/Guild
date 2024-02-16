@@ -80,7 +80,7 @@ export default function Symbol({symbol}) {
     
     return (
         symbol &&
-        <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 p-5 rounded-lg bg-gray-200 text-[12px]">
+        <section className="w-full max-w-80 flex flex-col items-center justify-center space-y-5 py-3 p-base rounded-lg bg-gray-200 text-[12px]">
             {/* 아케인, 어센틱 버튼 */}
             <div className="w-full flex justify-center items-center text-sm text-white-color">
                 <button className={`py-1 ${btnOn === "arcane" ? 'bg-[#36B8D0]' : 'bg-gray-400'} uppercase w-2/5 rounded-l-xl`}
