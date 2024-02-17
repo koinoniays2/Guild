@@ -43,6 +43,9 @@ export default function MemberSearch({searchName, guildMember, searchResultRef})
     const STAT_NAME = `w-10 font-bold text-center text-[#5CB85C] text-sm bg-gray-200`;
     const STAT_LINE = `w-full flex justify-between items-center`
     const STAT_DESC = `w-16 font-bold text-center`
+    
+    localStorage.setItem("characterData", JSON.stringify(dataGuildMemberCharacter));
+    localStorage.setItem("characterStat", JSON.stringify(guildMemberCharacterStat));
 
     return (
         <section ref={searchResultRef} className="w-full -translate-y-8 flex flex-col justify-start items-center text-black-color overflow-hidden">

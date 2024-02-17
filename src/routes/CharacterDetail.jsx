@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom';
 import Top from '../components/Top';
 import { apiCharacterAbility, apiCharacterAndroid, apiCharacterDojang, apiCharacterEquipment, apiCharacterHyperStat, apiCharacterPetEquipment, apiCharacterSkill, apiCharacterSymbol, apiCharacterUnion } from '../js/api';
@@ -22,11 +22,14 @@ import SkillGrade6 from '../components/SkillGrade6';
 
 export default function CharacterDetail() {
     const { ocid } = useParams();
-    const location = useLocation();
-    const characterData = location?.state?.characterData;
-    const characterStat = location?.state?.characterStat;
-    // console.log("캐릭정보", characterData);
-    // console.log(characterStat);
+    // const location = useLocation();
+    // const characterData = location?.state?.characterData;
+    // const characterStat = location?.state?.characterStat;
+    const characterData = JSON.parse(localStorage.getItem("characterData"));
+    const characterStat = JSON.parse(localStorage.getItem("characterStat"));
+    // console.log("characterData:", characterData);
+    // console.log("characterStat:", characterStat);
+    // console.log(ocid)
     
     // 페이지 로드 시 스크롤을 맨 위로 이동
     useEffect(() => {
@@ -113,6 +116,10 @@ export default function CharacterDetail() {
     let grade5skill;
     if(!isLoadingGuildMemberSkill) grade5skill = dataGuildMemberSkill?.character_skill;
     // console.log(characterStat);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setLoading(false);
+    }, [characterData, characterStat]);
     return (
         <>
         <Top logoImg="/logo.png" />
@@ -123,6 +130,7 @@ export default function CharacterDetail() {
             {/* 디테일 최대 컨테이너 */}
             <div className="w-full max-w-5xl flex flex-col justify-center items-center space-y-5">
                 {/* 캐릭창(캐릭 정보, 유니온 무릉) */}
+                {!loading && characterData && characterStat && (
                 <div className="w-full max-w-80 flex justify-center items-end space-x-1">
                     {/* 캐릭정보 */}
                     <div className="relative w-48 h-44 flex flex-col flex-shrink-0 justify-end items-center px-2 space-y-2">
@@ -149,12 +157,13 @@ export default function CharacterDetail() {
                             <span>{dojang?.dojang_best_floor}층</span>
                         </div>
                     </div>
-                </div>
+                </div>)}
                 {/* (스텟,어빌,하이퍼)wrap(장비창) */}
                 <div className="w-full flex flex-col items-center justify-center space-y-2 lg:flex-row lg:space-x-5 lg:items-start lg:space-y-0">
                     {/* 스텟, 어빌, 하이퍼*/}
                     <div className="w-fit flex flex-col space-y-2 justify-center items-center ">
                         {/* 스텟 */}
+                        {!loading && characterData && characterStat && (
                         <div className="w-full min-w-80 flex flex-col justify-center items-center space-y-1">
                             {/* 전투력 */}
                             <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
@@ -238,7 +247,7 @@ export default function CharacterDetail() {
                                 })}
                                 </StatLayoutLayout>
                             </div>
-                        </div>
+                        </div>)}
                         {/* 어빌, 하이퍼 */}
                         <div className="w-full max-w-80 flex flex-col items-center justify-center space-y-2">
                             {dataGuildMemberAbility && ( <Ability ability={dataGuildMemberAbility} /> )}
