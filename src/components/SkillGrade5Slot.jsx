@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SkillGrade5Detail from "./SkillGrade5Detail";
+import SkillGradeDetail from "./SkillGradeDetail";
 
-export default function SkillSlot({skill}) {
+export default function SkillGrade5Slot({skill}) {
   const [skillDetail, setSkillDetail] = useState(false);
   // console.log(skill);
   // console.log(skillDetail);
@@ -15,7 +15,7 @@ export default function SkillSlot({skill}) {
       </div>
       {skillDetail && (
       <section className="w-72 p-2 bg-black/70 absolute left-0 translate-x-0.5 z-10"style={{ pointerEvents: "none" }}>
-        <SkillGrade5Detail skill={skill} />
+        <SkillGradeDetail skill={skill} />
       </section>
           )}
     </>

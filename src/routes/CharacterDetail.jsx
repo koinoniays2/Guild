@@ -16,14 +16,15 @@ import PetEquipment from '../components/PetEquipment';
 import Symbol from '../components/Symbol';
 import SkillGrade5 from '../components/SkillGrade5';
 import Title from '../components/Title';
+import SkillGrade6 from '../components/SkillGrade6';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
 export default function CharacterDetail() {
     const { ocid } = useParams();
     const location = useLocation();
-    const characterData = location?.state.characterData;
-    const characterStat = location?.state.characterStat;
+    const characterData = location?.state?.characterData;
+    const characterStat = location?.state?.characterStat;
     // console.log("캐릭정보", characterData);
     // console.log(characterStat);
     
@@ -63,7 +64,7 @@ export default function CharacterDetail() {
     // 칭호
     let title;
     if(!isLoadingGuildMemberEquipment) title = dataGuildMemberEquipment?.title;
-    console.log(title);
+    // console.log(title);
     // console.log(dataGuildMemberEquipment);
     // console.log(dataGuildMemberEquipment.item_equipment_preset1);
     // console.log(dataGuildMemberEquipment.item_equipment_preset_1);
@@ -102,15 +103,16 @@ export default function CharacterDetail() {
         enabled: !!ocid
     });
     // console.log(dataGuildMemberSymbol);
-    // 스킬
+    // 5차스킬
+    const grade = 5;
     const { data:dataGuildMemberSkill, isLoading:isLoadingGuildMemberSkill } = 
-    useQuery(["getGuildMemberSkill", ocid && { ocid : ocid }], apiCharacterSkill, {
+    useQuery(["getGuildMemberSkill", ocid, grade], () => apiCharacterSkill(ocid, grade), {
         staleTime: 24 * 60 * 60 * 1000,
-        enabled: !!ocid
+        enabled: !!ocid && !!grade
     });
     let grade5skill;
     if(!isLoadingGuildMemberSkill) grade5skill = dataGuildMemberSkill?.character_skill;
-
+    // console.log(characterStat);
     return (
         <>
         <Top logoImg="/logo.png" />
@@ -156,14 +158,14 @@ export default function CharacterDetail() {
                         <div className="w-full min-w-80 flex flex-col justify-center items-center space-y-1">
                             {/* 전투력 */}
                             <div className="w-full flex justify-between items-center text-white-color bg-[#3E6076] px-2 py-1 rounded-md">
-                                <span>{characterStat[42]?.stat_name}</span>
-                                <span>{formatNumber(characterStat[42]?.stat_value)}</span>
+                                <span>{characterStat && characterStat[42]?.stat_name}</span>
+                                <span>{characterStat && formatNumber(characterStat[42]?.stat_value)}</span>
                             </div>
                             {/* 능력치 */}
                             <div className="w-full flex text-[12px] text-white-color bg-[#86939F] rounded-md">
                                 <StatLayoutLayout>
                                 {["HP", "STR", "INT"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -171,7 +173,7 @@ export default function CharacterDetail() {
                                 </StatLayoutLayout>
                                 <StatLayoutLayout>
                                 {["MP", "DEX", "LUK"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -182,16 +184,16 @@ export default function CharacterDetail() {
                             <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
                                 <StatLayoutLayout>
                                 {["최대 스탯공격력", "최종 데미지", "방어율 무시", "공격력", "마력", "재사용 대기시간 감소 (초)", "재사용 대기시간 미적용", "상태이상 추가 데미지"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
-                                    slot === "재사용 대기시간 감소 (초)" ? <StatLayout key={item.stat_name} coolTime={characterStat[34].stat_value}>{item}</StatLayout> :
+                                    slot === "재사용 대기시간 감소 (초)" ? <StatLayout key={item.stat_name} coolTime={characterStat[34]?.stat_value}>{item}</StatLayout> :
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
                                 })}
                                 </StatLayoutLayout>
                                 <StatLayoutLayout>
                                 {["데미지", "보스 몬스터 데미지", "일반 몬스터 데미지", "크리티컬 확률", "크리티컬 데미지", "버프 지속시간", "속성 내성 무시", "소환수 지속시간 증가"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -202,7 +204,7 @@ export default function CharacterDetail() {
                             <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
                                 <StatLayoutLayout>
                                 {["메소 획득량", "아이템 드롭률", "추가 경험치 획득"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -210,7 +212,7 @@ export default function CharacterDetail() {
                                 </StatLayoutLayout>
                                 <StatLayoutLayout>
                                 {["스타포스", "아케인포스", "어센틱포스"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -221,7 +223,7 @@ export default function CharacterDetail() {
                             <div className="w-full flex text-[12px] text-white-color bg-[#6c7785] rounded-md">
                                 <StatLayoutLayout>
                                 {["방어력", "이동속도", "스탠스"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -229,7 +231,7 @@ export default function CharacterDetail() {
                                 </StatLayoutLayout>
                                 <StatLayoutLayout>
                                 {["상태이상 내성", "점프력", "공격 속도"].map((slot) => {
-                                const item = characterStat.find((item) => item.stat_name === slot);
+                                const item = characterStat?.find((item) => item.stat_name === slot);
                                 return item ? (
                                     <StatLayout key={item.stat_name}>{item}</StatLayout>
                                 ) : null;
@@ -251,7 +253,9 @@ export default function CharacterDetail() {
                         <Symbol symbol={!isLoadingGuildMemberSymbol && dataGuildMemberSymbol} />
                     </div>
                     <div className="w-full max-w-80 space-y-2">
-                        <SkillGrade5 skill={grade5skill} />
+                        {grade5skill?.length !==0 ? (
+                        <SkillGrade5 skill={grade5skill} />) : ""}
+                        <SkillGrade6 ocid={ocid} />
                     </div>
                 </div>
                 {/* 임시 div */}

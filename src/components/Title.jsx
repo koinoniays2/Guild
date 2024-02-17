@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Title({title}) {
     const titleDec = title?.title_description.split("\n").flatMap(item => item.split(","));
-    const filteredTitleDec = titleDec.filter(item => !item.includes("클릭"));
-    console.log(filteredTitleDec);
+    // const filteredTitleDec = titleDec.filter(item => !item.includes("클릭"));
+    // console.log(filteredTitleDec);
     const dataFormat = (title) => {
         if(title !== "expired" || title !== null ) {
             const date = new Date(title);

@@ -1,4 +1,4 @@
-import SkillSlot from "./SkillSlot";
+import SkillGrade5Slot from "./SkillGrade5Slot";
 
 const FourRow = ({children}) => (
     <div className="flex w-full justify-center items-center space-x-3.5 pb-1">
@@ -10,7 +10,7 @@ const ThreeRow = ({children}) => (
         {children}
     </div>
 )
-export default function Skill({skill}) {
+export default function SkillGrade5({skill}) {
     const rows = [];
     for (let i = 0; i < skill?.length; i += 7) {
         const chunkedSkills = skill.slice(i, i + 7);
@@ -18,12 +18,12 @@ export default function Skill({skill}) {
             <div key={i}>
                 <FourRow>
                     {chunkedSkills.slice(0, 4).map((skill, index) => (
-                        <SkillSlot key={index} skill={skill} />
+                        <SkillGrade5Slot key={index} skill={skill} />
                     ))}
                 </FourRow>
                 <ThreeRow>
                     {chunkedSkills.slice(4, 7).map((skill, index) => (
-                        <SkillSlot key={index} skill={skill} />
+                        <SkillGrade5Slot key={index} skill={skill} />
                     ))}
                 </ThreeRow>
             </div>
