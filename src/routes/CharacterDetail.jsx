@@ -17,6 +17,7 @@ import Symbol from '../components/Symbol';
 import SkillGrade5 from '../components/SkillGrade5';
 import Title from '../components/Title';
 import SkillGrade6 from '../components/SkillGrade6';
+import Union from '../components/Union';
 // import { useQuery } from 'react-query';
 // import { apiOcid } from '../js/api';
 
@@ -265,6 +266,7 @@ export default function CharacterDetail() {
                         {grade5skill?.length !==0 ? (
                         <SkillGrade5 skill={grade5skill} />) : ""}
                         <SkillGrade6 ocid={ocid} />
+                        {/* <Union ocid={ocid} /> */}
                     </div>
                 </div>
                 {/* 임시 div */}
