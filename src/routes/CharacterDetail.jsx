@@ -266,7 +266,7 @@ export default function CharacterDetail() {
                         {grade5skill?.length !==0 ? (
                         <SkillGrade5 skill={grade5skill} />) : ""}
                         <SkillGrade6 ocid={ocid} />
-                        {/* <Union ocid={ocid} /> */}
+                        <Union ocid={ocid} union={union} />
                     </div>
                 </div>
                 {/* 임시 div */}
