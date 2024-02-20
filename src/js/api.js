@@ -211,3 +211,12 @@ export async function apiPostGoogleMail(data) {
         console.log(error);
     }
 }
+// 서버연결
+export async function serverTest() {
+    try{
+        return await fetch("http://localhost:3000")
+        .then((res) => res.json());
+    }catch(error) {
+        console.log(error);
+    }
+}

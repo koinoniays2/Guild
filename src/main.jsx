@@ -5,6 +5,7 @@ import './index.css'
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import CharacterDetail from './routes/CharacterDetail.jsx';
+import ServerTest from './routes/ServerTest.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "characters/:ocid",
         element: <CharacterDetail />
+      },
+      {
+        path: "server",
+        element: <ServerTest />
       }
     ]
   },
