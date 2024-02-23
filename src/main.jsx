@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <CharacterDetail />
       },
       {
-        path: "server",
+        path: "board",
         element: <ServerTest />
       }
     ]

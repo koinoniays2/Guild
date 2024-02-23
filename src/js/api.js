@@ -212,11 +212,16 @@ export async function apiPostGoogleMail(data) {
     }
 }
 // 서버연결
-export async function serverTest() {
+export async function serverTest(formData) {
     try{
-        return await fetch("http://localhost:3000")
-        .then((res) => res.json());
-    }catch(error) {
+        return await fetch("https://test-koinonia.koyeb.app/board/write", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json" // 서버에 어떤 데이터로 요청할것인지
+            },
+            body: JSON.stringify(formData) // 객체 json화
+        }).then(res => res.json());
+    } catch(error) {
         console.log(error);
     }
 }
