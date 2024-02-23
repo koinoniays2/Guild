@@ -244,6 +244,10 @@ export default function Union({ocid, union}) {
     }, [unionBlock]);
     return (
     <div className="flex flex-col items-center justify-center">
+        <div className="bg-[#1f354d] h-11 w-[331px] rounded-t-lg text-white-color p-2 flex justify-between items-center">
+            <p>{union?.union_grade}</p>
+            <p>Lv.{union?.union_level}</p>
+        </div>
         <canvas ref={canvasRef} className="bg-gray-400"></canvas>
         <section className="w-[331px] relative flex flex-col justify-center items-center bg-[#1f354d] p-3 rounded-b-lg space-y-2">
             <p className="text-[#ffe1be] text-start w-full">공격대 효과</p>
